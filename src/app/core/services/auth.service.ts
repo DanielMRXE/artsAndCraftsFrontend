@@ -50,6 +50,8 @@ export class AuthService {
   logout(): void {
     this.sessionSignal.set(null);
     localStorage.removeItem('fym_session');
-    this.router.navigate(['/']);
+    localStorage.removeItem('fym_jwt_token');
+    localStorage.removeItem('fym_customer_profile');
+    this.router.navigate(['/login']);
   }
 }
