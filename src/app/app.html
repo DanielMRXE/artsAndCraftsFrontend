@@ -1,0 +1,109 @@
+﻿<header class="fym-floating-nav-container">
+  <div class="fym-floating-nav-row">
+    
+    <!-- Izquierda: Marca limpia (Sin container envolvente grande) -->
+    <a routerLink="/" class="fym-brand">
+      <span class="fym-brand-icon">
+        @if (assets.BRAND_LOGO) {
+          <img [src]="assets.BRAND_LOGO" alt="Logo Flor y Más" class="fym-brand-img" />
+        } @else {
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2a9 9 0 0 1 9 9c0 7-9 11-9 11S3 18 3 11a9 9 0 0 1 9-9z"></path>
+            <path d="M12 2v20"></path>
+            <path d="M7 8c2 2 5 2 5 2"></path>
+            <path d="M17 8c-2 2-5 2-5 2"></path>
+          </svg>
+        }
+      </span>
+      <span class="fym-brand-name">Flor y Más</span>
+    </a>
+
+    <!-- Centro: El único container tipo cápsula flotante (Estilo Velvetspoon) -->
+    <nav class="fym-capsule-menu">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="fym-capsule-item">Inicio</a>
+      <a routerLink="/catalogo" routerLinkActive="active" class="fym-capsule-item">Shop</a>
+      <a routerLink="/pedidos" routerLinkActive="active" class="fym-capsule-item">Mis Cotizaciones</a>
+      <a href="#contacto" class="fym-capsule-item">Contacto</a>
+    </nav>
+
+    <!-- Derecha: Acciones y Perfil limpios directos -->
+    <div class="fym-nav-right">
+      @if (auth.isAuthenticated()) {
+        <div class="fym-user-profile-badge">
+          <img [src]="auth.currentUser()?.avatarUrl" alt="Avatar" class="fym-user-avatar" />
+          <span class="fym-user-name">{{ auth.currentUser()?.fullName?.split(' ')?.[0] }}</span>
+          <button type="button" (click)="auth.logout()" class="fym-btn-logout-tiny" title="Cerrar Sesión">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      } @else {
+        <a routerLink="/login" class="fym-profile-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span>Acceder</span>
+        </a>
+      }
+
+      <a routerLink="/personalizar" class="fym-nav-cta">
+        <span>Diseñar Pieza</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</header>
+
+<main class="fym-main-viewport">
+  <router-outlet></router-outlet>
+</main>
+
+<footer id="contacto" class="fym-editorial-footer">
+  <div class="fym-footer-inner">
+    <div class="fym-footer-brand-col">
+      <h3 class="fym-display">{{ contact.BUSINESS_NAME }}</h3>
+      <p>{{ contact.TAGLINE }}</p>
+      <div class="fym-footer-contact">
+        <span>{{ contact.ADDRESS_LINE }}</span>
+        <span>
+          WhatsApp: <a [href]="contact.WHATSAPP_LINK" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">{{ contact.PHONE_DISPLAY }}</a> &bull; 
+          <a [href]="'mailto:' + contact.EMAIL" style="color: inherit; text-decoration: underline;">{{ contact.EMAIL }}</a>
+        </span>
+      </div>
+    </div>
+
+    <div class="fym-footer-nav-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a routerLink="/">Inicio</a></li>
+        <li><a routerLink="/catalogo">Colección Completa</a></li>
+        <li><a routerLink="/personalizar">Product Builder</a></li>
+        <li><a routerLink="/pedidos">Mis Cotizaciones & Chat</a></li>
+      </ul>
+    </div>
+
+    <div class="fym-footer-nav-col">
+      <h4>Categorías</h4>
+      <ul>
+        <li><a routerLink="/personalizar/ramos">Ramos Eternos</a></li>
+        <li><a routerLink="/personalizar/pinatas">Piñatas 3D</a></li>
+        <li><a routerLink="/personalizar/cajas">Cajas Sorpresa</a></li>
+        <li><a routerLink="/personalizar/llaveros">Llaveros Artesanales</a></li>
+        <li><a routerLink="/personalizar/retrateras">Portarretratos LED</a></li>
+        <li><a routerLink="/personalizar/maquetas">Maquetas & Murales</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="fym-footer-bottom">
+    <small>&copy; 2026 Flor y Más. Todos los derechos reservados. Artesanía de autor.</small>
+    <a routerLink="/panel-taller" class="fym-staff-link">Acceso Personal de Taller &rarr;</a>
+  </div>
+</footer>

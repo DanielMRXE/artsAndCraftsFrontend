@@ -1,0 +1,301 @@
+﻿@use '../../../styles/variables' as v;
+
+.fym-login-viewport {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: v.$fym-color-canvas;
+}
+
+.fym-login-card {
+  width: 100%;
+  max-width: 420px;
+  background: #FFFFFF;
+  border: 1px solid rgba(42, 23, 29, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(42, 23, 29, 0.04);
+  padding: 34px 30px;
+}
+
+.fym-login-header {
+  text-align: center;
+  margin-bottom: 24px;
+
+  .fym-auth-icon-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: v.$fym-color-surface;
+    color: v.$fym-color-rose-primary;
+    margin-bottom: 12px;
+  }
+
+  .fym-display {
+    font-family: v.$fym-font-display;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: v.$fym-color-ink;
+    margin: 0 0 6px;
+    letter-spacing: -0.02em;
+  }
+
+  .fym-login-sub {
+    font-size: 0.86rem;
+    color: v.$fym-color-ink-muted;
+    line-height: 1.45;
+    margin: 0 0 18px;
+  }
+}
+
+.fym-auth-tabs {
+  display: flex;
+  background: v.$fym-color-surface;
+  padding: 4px;
+  border-radius: v.$fym-radius-pill;
+  gap: 4px;
+
+  .fym-tab-btn {
+    flex: 1;
+    padding: 8px 14px;
+    border: none;
+    background: transparent;
+    border-radius: v.$fym-radius-pill;
+    font-family: v.$fym-font-sans;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: v.$fym-color-ink-secondary;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &.active {
+      background: #FFFFFF;
+      color: v.$fym-color-rose-primary;
+      box-shadow: 0 2px 8px rgba(217, 83, 111, 0.15);
+    }
+  }
+}
+
+.fym-alert {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  font-size: 0.84rem;
+  font-weight: 600;
+
+  &.fym-alert-error {
+    background: #FFF1F2;
+    border: 1px solid #FECDD3;
+    color: #BE123C;
+  }
+}
+
+.fym-auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fym-names-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fym-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  .fym-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .fym-forgot-hint {
+      font-size: 0.72rem;
+      color: v.$fym-color-ink-muted;
+    }
+  }
+
+  .fym-field-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: v.$fym-color-ink;
+  }
+
+  .fym-text-input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid rgba(42, 23, 29, 0.14);
+    border-radius: 12px;
+    font-family: v.$fym-font-sans;
+    font-size: 0.92rem;
+    color: v.$fym-color-ink;
+    background: #FAFAFA;
+    transition: all 0.2s ease;
+
+    &:focus {
+      outline: none;
+      background: #FFFFFF;
+      border-color: v.$fym-color-rose-primary;
+      box-shadow: 0 0 0 3px rgba(217, 83, 111, 0.12);
+    }
+
+    &::placeholder {
+      color: v.$fym-color-ink-light;
+    }
+  }
+}
+
+.fym-select-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .fym-select-input {
+    width: 100%;
+    padding: 11px 36px 11px 14px;
+    border: 1px solid rgba(42, 23, 29, 0.14);
+    border-radius: 12px;
+    font-family: v.$fym-font-sans;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: v.$fym-color-ink;
+    background: #FAFAFA;
+    cursor: pointer;
+    appearance: none;
+    transition: all 0.2s ease;
+
+    &:focus {
+      outline: none;
+      background: #FFFFFF;
+      border-color: v.$fym-color-rose-primary;
+      box-shadow: 0 0 0 3px rgba(217, 83, 111, 0.12);
+    }
+  }
+
+  .fym-select-caret {
+    position: absolute;
+    right: 14px;
+    pointer-events: none;
+    color: v.$fym-color-ink-muted;
+    display: flex;
+  }
+}
+
+.fym-phone-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(42, 23, 29, 0.14);
+  border-radius: 12px;
+  background: #FAFAFA;
+  overflow: hidden;
+  transition: all 0.2s ease;
+
+  &:focus-within {
+    background: #FFFFFF;
+    border-color: v.$fym-color-rose-primary;
+    box-shadow: 0 0 0 3px rgba(217, 83, 111, 0.12);
+  }
+
+  .fym-phone-code {
+    padding: 11px 14px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: v.$fym-color-rose-primary;
+    background: v.$fym-color-surface;
+    border-right: 1px solid rgba(42, 23, 29, 0.1);
+    user-select: none;
+    min-width: 60px;
+    text-align: center;
+  }
+
+  .fym-phone-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 11px 14px;
+    font-family: v.$fym-font-sans;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: v.$fym-color-ink;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: v.$fym-color-ink-light;
+      font-weight: 400;
+    }
+  }
+}
+
+.fym-btn-primary {
+  width: 100%;
+  padding: 12px 20px;
+  background: v.$fym-color-rose-primary;
+  color: #FFFFFF;
+  border: none;
+  border-radius: v.$fym-radius-pill;
+  font-family: v.$fym-font-sans;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(217, 83, 111, 0.3);
+  transition: all 0.2s ease;
+  margin-top: 4px;
+
+  &:hover:not(:disabled) {
+    background: v.$fym-color-rose-dark;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(217, 83, 111, 0.4);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.fym-auth-switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 6px;
+
+  .fym-switch-text {
+    font-size: 0.82rem;
+    color: v.$fym-color-ink-secondary;
+  }
+
+  .fym-link-btn {
+    background: none;
+    border: none;
+    color: v.$fym-color-rose-primary;
+    font-family: v.$fym-font-sans;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    padding: 0;
+
+    &:hover {
+      color: v.$fym-color-rose-dark;
+    }
+  }
+}

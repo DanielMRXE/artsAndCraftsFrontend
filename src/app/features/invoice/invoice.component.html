@@ -1,0 +1,125 @@
+﻿<div class="fym-invoice-page">
+  <div class="fym-invoice-actions no-print">
+    <a routerLink="/panel-taller" class="fym-btn fym-btn-outline">&larr; Volver al Panel</a>
+    <button (click)="printInvoice()" class="fym-btn fym-btn-primary">Imprimir / Guardar PDF</button>
+  </div>
+
+  @if (order()) {
+    <div class="fym-invoice-sheet" id="invoice">
+      <!-- Encabezado de Factura / Comprobante -->
+      <div class="fym-inv-header">
+        <div>
+          <h1 class="fym-inv-brand">Flor y Más</h1>
+          <p class="fym-inv-sub">Taller Artesanal & Floristería de Diseño</p>
+          <p class="fym-inv-contact">Managua, Nicaragua &bull; WhatsApp: +505 8888 7777 &bull; RUC: J0310000000000</p>
+        </div>
+
+        <div class="fym-inv-meta">
+          <span class="fym-doc-type">COMPROBANTE DE PEDIDO</span>
+          <h2 class="fym-inv-number">#{{ order().orderNumber }}</h2>
+          <p><strong>Fecha de Emisión:</strong> {{ order().createdAt | date:'mediumDate' }}</p>
+          <p><strong>Fecha de Entrega:</strong> {{ order().estimatedDeliveryDate | date:'mediumDate' }}</p>
+        </div>
+      </div>
+
+      <!-- Datos del Cliente y Envío -->
+      <div class="fym-inv-parties">
+        <div class="fym-inv-col">
+          <span class="fym-inv-label">Datos del Cliente:</span>
+          <h4>{{ order().customer?.fullName }}</h4>
+          <p><strong>Teléfono:</strong> {{ order().customer?.phone }}</p>
+          <p><strong>Dirección:</strong> {{ order().deliveryAddress }}</p>
+          <p><strong>Receptor:</strong> {{ order().recipientName }}</p>
+        </div>
+
+        <div class="fym-inv-col">
+          <span class="fym-inv-label">Estado de Cuenta del Pedido:</span>
+          <div class="fym-status-pill" [attr.data-status]="order().status">
+            Estado: {{ order().status }}
+          </div>
+          <p style="margin-top: 0.6rem;"><strong>Horario de Entrega:</strong> {{ order().deliveryTimeSlot || 'Coordinado' }}</p>
+        </div>
+      </div>
+
+      <!-- Tabla de Productos y Personalizaciones -->
+      <table class="fym-inv-table">
+        <thead>
+          <tr>
+            <th>Descripción del Detalle / Producto</th>
+            <th class="text-center">Cant.</th>
+            <th class="text-right">Precio Unit.</th>
+            <th class="text-right">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of order().items; track item.id) {
+            <tr>
+              <td>
+                <strong>{{ item.productNameSnapshot }}</strong>
+                @if (item.selectedExtras?.length > 0) {
+                  <ul class="fym-inv-extras">
+                    @for (ext of item.selectedExtras; track ext.id) {
+                      <li>
+                        + {{ ext.extraNameSnapshot }} (C$ {{ ext.additionalPriceSnapshot | number:'1.2-2' }})
+                        @if (ext.customText) {
+                          <span class="fym-text-quote">"{{ ext.customText }}"</span>
+                        }
+                      </li>
+                    }
+                  </ul>
+                }
+              </td>
+              <td class="text-center">{{ item.quantity }}</td>
+              <td class="text-right">C$ {{ item.unitPriceSnapshot | number:'1.2-2' }}</td>
+              <td class="text-right">C$ {{ item.subtotal | number:'1.2-2' }}</td>
+            </tr>
+          }
+          <tr>
+            <td colspan="3" class="text-right"><strong>Costo de Envío Programado:</strong></td>
+            <td class="text-right">C$ {{ order().deliveryFee | number:'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Liquidación y Resumen de Pagos -->
+      <div class="fym-inv-totals">
+        <div class="fym-inv-payments-box">
+          <span class="fym-inv-label">Historial de Pagos y Abonos Registrados:</span>
+          @if (order().payments?.length > 0) {
+            <ul>
+              @for (p of order().payments; track p.id) {
+                <li>
+                  <span>{{ p.createdAt | date:'short' }} &bull; {{ p.paymentType }}:</span>
+                  <strong>C$ {{ p.amount | number:'1.2-2' }} ({{ p.status }})</strong>
+                </li>
+              }
+            </ul>
+          } @else {
+            <p class="fym-hint">No hay abonos confirmados todavía.</p>
+          }
+        </div>
+
+        <div class="fym-inv-figures">
+          <div class="fym-inv-figure-line">
+            <span>Total del Pedido:</span>
+            <strong>C$ {{ order().totalAmount | number:'1.2-2' }}</strong>
+          </div>
+          <div class="fym-inv-figure-line fym-deposit-paid">
+            <span>Anticipo Pagado:</span>
+            <strong>- C$ {{ order().depositPaidAmount | number:'1.2-2' }}</strong>
+          </div>
+          <div class="fym-inv-figure-line fym-due-line">
+            <span>Saldo Pendiente a Contra-Entrega:</span>
+            <h3>C$ {{ order().balanceDue | number:'1.2-2' }}</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pie de Factura -->
+      <div class="fym-inv-footer">
+        <p>¡Gracias por confiar en el arte y dedicación de <strong>Flor y Más</strong>!</p>
+        <small>Este documento certifica los acuerdos de personalización y pagos registrados en el taller.</small>
+      </div>
+    </div>
+  }
+</div>

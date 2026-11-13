@@ -1,0 +1,213 @@
+﻿.fym-invoice-page {
+  max-width: 850px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+}
+
+.fym-invoice-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.fym-invoice-sheet {
+  background: #FFFFFF;
+  border: 1px solid var(--fym-border);
+  border-radius: var(--fym-radius-md);
+  padding: 3.5rem;
+  box-shadow: var(--fym-shadow-md);
+  color: #2A2725;
+}
+
+.fym-inv-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--fym-sage-deep);
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+.fym-inv-brand {
+  font-family: var(--fym-font-serif);
+  font-size: 2.4rem;
+  color: var(--fym-sage-deep);
+}
+
+.fym-inv-sub {
+  font-weight: 600;
+  color: var(--fym-terracotta);
+  font-size: 0.95rem;
+}
+
+.fym-inv-contact {
+  font-size: 0.85rem;
+  color: var(--fym-ink-muted);
+  margin-top: 0.4rem;
+}
+
+.fym-inv-meta {
+  text-align: right;
+
+  .fym-doc-type {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--fym-sage-deep);
+  }
+
+  .fym-inv-number {
+    font-size: 1.8rem;
+    margin: 0.3rem 0;
+  }
+
+  p {
+    font-size: 0.85rem;
+    color: var(--fym-ink-muted);
+  }
+}
+
+.fym-inv-parties {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2rem;
+  background: var(--fym-canvas);
+  border: 1px solid var(--fym-border-subtle);
+  border-radius: var(--fym-radius-sm);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+
+  h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+  }
+}
+
+.fym-inv-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--fym-ink-muted);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.fym-status-pill {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 12px;
+  background: var(--fym-sage-light);
+  color: var(--fym-sage-deep);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.fym-inv-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+
+  th {
+    border-bottom: 2px solid var(--fym-border);
+    padding: 0.8rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--fym-ink-muted);
+  }
+
+  td {
+    border-bottom: 1px solid var(--fym-border-subtle);
+    padding: 1rem 0.8rem;
+    font-size: 0.95rem;
+  }
+}
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+.fym-inv-extras {
+  list-style: none;
+  margin-top: 0.4rem;
+  li {
+    font-size: 0.85rem;
+    color: var(--fym-ink-muted);
+  }
+}
+
+.fym-text-quote {
+  font-style: italic;
+  color: var(--fym-terracotta);
+}
+
+.fym-inv-totals {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  border-top: 1px solid var(--fym-border);
+  padding-top: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.fym-inv-payments-box {
+  background: var(--fym-canvas);
+  padding: 1.2rem;
+  border-radius: var(--fym-radius-sm);
+  border: 1px solid var(--fym-border-subtle);
+
+  ul {
+    list-style: none;
+    li {
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+.fym-inv-figures {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.fym-inv-figure-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+
+.fym-deposit-paid {
+  color: var(--fym-sage-deep);
+  font-weight: 600;
+}
+
+.fym-due-line {
+  border-top: 2px solid var(--fym-border);
+  padding-top: 0.8rem;
+  color: var(--fym-terracotta-dark);
+
+  h3 {
+    font-size: 1.5rem;
+    font-family: var(--fym-font-serif);
+  }
+}
+
+.fym-inv-footer {
+  border-top: 1px solid var(--fym-border-subtle);
+  padding-top: 1.5rem;
+  text-align: center;
+  color: var(--fym-ink-muted);
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff !important; }
+  .fym-invoice-page { margin: 0; padding: 0; }
+  .fym-invoice-sheet { border: none; box-shadow: none; padding: 0; }
+}

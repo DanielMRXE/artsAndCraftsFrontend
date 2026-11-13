@@ -1,0 +1,167 @@
+// ==========================================
+// SELLER PANEL - STYLES (Cards & Stream)
+// ==========================================
+
+.fym-subfilter-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+
+  span {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #1A0D12;
+  }
+
+  .fym-pill-filter {
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: #FFFFFF;
+    border: 1px solid #F1D4DB;
+    color: #6E535C;
+    cursor: pointer;
+    transition: all 0.15s;
+
+    &:hover {
+      border-color: #D9536F;
+      color: #D9536F;
+    }
+
+    &.active {
+      background: #D9536F;
+      color: #FFFFFF;
+      border-color: #D9536F;
+    }
+  }
+}
+
+.fym-seller-master-detail {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.fym-seller-cards-stream {
+  background: #FFFFFF;
+  border-radius: 12px;
+  border: 1px solid #F1D4DB;
+  padding: 16px;
+  max-height: calc(100vh - 280px);
+  overflow-y: auto;
+
+  .fym-stream-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    h3 { font-size: 1.05rem; font-weight: 700; color: #1A0D12; margin: 0; }
+    .fym-stream-hint { font-size: 0.75rem; color: #6E535C; }
+  }
+
+  .fym-orders-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .fym-seller-order-card {
+    background: #FFF8F9;
+    border: 1px solid #F1D4DB;
+    border-radius: 10px;
+    padding: 14px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+
+    &:hover {
+      border-color: #D9536F;
+      background: #FFFFFF;
+    }
+
+    &.active {
+      background: #FFFFFF;
+      border-color: #D9536F;
+      box-shadow: 0 4px 12px rgba(217, 83, 111, 0.12);
+    }
+
+    .fym-order-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+
+      .fym-order-id {
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: #1A0D12;
+      }
+    }
+
+    .fym-order-card-client {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1A0D12;
+      margin: 0 0 4px;
+    }
+
+    .fym-order-card-detail {
+      font-size: 0.82rem;
+      color: #6E535C;
+      margin: 0 0 10px;
+    }
+
+    .fym-order-card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #F6DFE5;
+      padding-top: 8px;
+
+      .fym-delivery-target {
+        font-size: 0.75rem;
+        color: #6E535C;
+      }
+
+      .fym-order-card-total {
+        font-size: 0.95rem;
+        font-weight: 800;
+        color: #D9536F;
+      }
+    }
+  }
+}
+
+// Badges de Estado
+.fym-badge-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  display: inline-block;
+
+  &.status-pending {
+    background: #FDF2F4;
+    color: #D9536F;
+    border: 1px solid #F1D4DB;
+  }
+  &.status-production {
+    background: #FEF3C7;
+    color: #92400E;
+    border: 1px solid #FDE68A;
+  }
+  &.status-completed {
+    background: #E8F5E9;
+    color: #2D6A4F;
+    border: 1px solid #C8E6C9;
+  }
+}
+
+@media (max-width: 960px) {
+  .fym-seller-master-detail {
+    grid-template-columns: 1fr;
+  }
+}

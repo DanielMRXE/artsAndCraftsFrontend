@@ -1,0 +1,165 @@
+﻿@use './seller-panel-drawer.scss' as *;
+@use './seller-panel-cards.scss' as *;
+
+.fym-seller-viewport {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 24px 80px;
+
+  .fym-dashboard-banner {
+    width: 100%;
+    margin-bottom: 24px;
+    border-radius: 12px;
+    overflow: hidden;
+    max-height: 180px;
+    border: 1px solid #F1D4DB;
+    .fym-banner-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .fym-seller-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    .fym-topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .fym-btn-kebab {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: #FFFFFF;
+      border: 1px solid #F1D4DB;
+      color: #1A0D12;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(26, 13, 18, 0.04);
+
+      &:hover {
+        background: #FDF2F4;
+        border-color: #D9536F;
+        color: #D9536F;
+        transform: translateY(-1px);
+      }
+
+      .kebab-icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .fym-topbar-title {
+      h1 {
+        font-size: 1.85rem;
+        font-weight: 800;
+        color: #1A0D12;
+        margin: 4px 0 0;
+      }
+    }
+
+    .fym-seller-nav-tabs {
+      display: flex;
+      background: #FFF8F9;
+      border: 1px solid #F1D4DB;
+      padding: 4px;
+      border-radius: 9999px;
+
+      button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 18px;
+        border-radius: 9999px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #6E535C;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        .fym-tab-badge {
+          background: #D9536F;
+          color: #FFFFFF;
+          font-size: 0.7rem;
+          font-weight: 700;
+          padding: 2px 7px;
+          border-radius: 9999px;
+        }
+
+        &.active {
+          background: #FFFFFF;
+          color: #1A0D12;
+          box-shadow: 0 2px 6px rgba(26, 13, 18, 0.08);
+        }
+      }
+    }
+  }
+}
+
+// ------------------------------------------
+// KPIS RESUMEN
+// ------------------------------------------
+.fym-kpis-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+
+  .fym-kpi-card {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 18px 20px;
+    border: 1px solid #F1D4DB;
+    box-shadow: 0 2px 8px rgba(26, 13, 18, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      border-color: #D9536F;
+    }
+
+    .fym-kpi-sub {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #6E535C;
+      letter-spacing: 0.04em;
+    }
+
+    .fym-kpi-num {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin: 4px 0;
+
+      &.fym-terracotta { color: #D9536F; }
+      &.fym-honey { color: #B45309; }
+      &.fym-sage { color: #2D6A4F; }
+      &.fym-cacao { color: #1A0D12; }
+    }
+
+    .fym-kpi-desc {
+      font-size: 0.8rem;
+      color: #6E535C;
+    }
+  }
+}

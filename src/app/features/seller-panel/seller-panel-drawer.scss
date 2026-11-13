@@ -1,0 +1,221 @@
+// ==========================================
+// SELLER PANEL - DRAWER & RESPONSIVE STYLES
+// ==========================================
+
+.fym-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 13, 18, 0.45);
+  backdrop-filter: blur(4px);
+  z-index: 998;
+  animation: fadeIn 0.2s ease;
+}
+
+.fym-sidebar-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 320px;
+  max-width: 85vw;
+  background: #FFFFFF;
+  z-index: 999;
+  box-shadow: 4px 0 24px rgba(26, 13, 18, 0.15);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &.open {
+    transform: translateX(0);
+  }
+
+  .fym-drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1.25rem;
+    border-bottom: 1px solid #F1D4DB;
+    background: #FFF8F9;
+
+    .drawer-user-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+
+      .drawer-user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #FDF2F4;
+        border: 1px solid #F1D4DB;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #D9536F;
+        .fym-svg-icon {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      .drawer-user-name {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #1A0D12;
+        margin: 0;
+      }
+
+      .drawer-user-role {
+        font-size: 0.75rem;
+        color: #6E535C;
+      }
+    }
+
+    .btn-close-drawer {
+      background: transparent;
+      border: none;
+      color: #6E535C;
+      cursor: pointer;
+      padding: 0.4rem;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        background: #FDF2F4;
+        color: #D9536F;
+      }
+      .fym-svg-icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  .fym-drawer-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .drawer-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+
+      .drawer-section-title {
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #8C7A82;
+        padding: 0 0.75rem 0.35rem;
+      }
+
+      .drawer-nav-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.65rem 0.85rem;
+        border-radius: 8px;
+        background: transparent;
+        border: none;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        color: #2A171D;
+        font-size: 0.88rem;
+        font-weight: 600;
+        transition: all 0.15s ease;
+
+        .fym-svg-icon {
+          width: 18px;
+          height: 18px;
+          color: #6E535C;
+          flex-shrink: 0;
+        }
+
+        .nav-label {
+          flex: 1;
+        }
+
+        .nav-counter {
+          font-size: 0.75rem;
+          font-weight: 700;
+          padding: 0.15rem 0.5rem;
+          border-radius: 9999px;
+          background: #F1D4DB;
+          color: #1A0D12;
+
+          &.badge-pending {
+            background: #FDF2F4;
+            color: #D9536F;
+            border: 1px solid #F1D4DB;
+          }
+          &.badge-process {
+            background: #FEF3C7;
+            color: #92400E;
+          }
+          &.badge-done {
+            background: #E8F5E9;
+            color: #2D6A4F;
+          }
+        }
+
+        &:hover {
+          background: #FFF8F9;
+          color: #D9536F;
+          .fym-svg-icon { color: #D9536F; }
+        }
+
+        &.active {
+          background: #FDF2F4;
+          color: #D9536F;
+          font-weight: 700;
+          .fym-svg-icon { color: #D9536F; }
+        }
+      }
+    }
+  }
+
+  .fym-drawer-footer {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid #F1D4DB;
+    background: #FFF8F9;
+
+    .drawer-logout-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.75rem;
+      border-radius: 8px;
+      background: #FFFFFF;
+      border: 1px solid #F1D4DB;
+      color: #C1121F;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      .fym-svg-icon {
+        width: 18px;
+        height: 18px;
+      }
+
+      &:hover {
+        background: #FDE8E8;
+        border-color: #F8B4B4;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

@@ -1,0 +1,190 @@
+﻿<!-- ESCENARIO HERO 3D (3D Slider de Colección Artesanal) -->
+<section class="fym-stage-section" [style.background]="currentStageProduct().backgroundTheme">
+  
+  <!-- Letras Gigantes de Fondo Estilo Editorial Velvetspoon -->
+  <div class="fym-stage-backdrop-text" aria-hidden="true">
+    {{ currentStageProduct().name.split(' ')[0] }}
+  </div>
+
+  <div class="fym-stage-container">
+    
+    <!-- Información Editorial Izquierda -->
+    <div class="fym-stage-info">
+      <div class="fym-stage-meta">
+        <span class="fym-badge-pill" [ngClass]="currentStageProduct().badge === 'Disponible' ? 'fym-badge-available' : 'fym-badge-custom'">
+          {{ currentStageProduct().badge }}
+        </span>
+        <span class="fym-stage-category">{{ currentStageProduct().category }}</span>
+      </div>
+
+      <h1 class="fym-stage-title fym-display">{{ currentStageProduct().name }}</h1>
+      <p class="fym-stage-tagline">{{ currentStageProduct().tagline }}</p>
+
+      <div class="fym-stage-specs">
+        <div class="fym-spec-item">
+          <span class="fym-spec-label">Tiempo de Confección:</span>
+          <strong class="fym-spec-val">{{ currentStageProduct().craftTime }}</strong>
+        </div>
+      </div>
+
+      <div class="fym-stage-cta-group">
+        <a [routerLink]="['/personalizar', currentStageProduct().categorySlug]" class="fym-btn-stage-primary" [style.background]="currentStageProduct().accentColor">
+          <span>Personalizar {{ currentStageProduct().name.split(' ')[0] }}</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+        <a routerLink="/pedidos" class="fym-btn-stage-ghost">Negociar en Chat</a>
+      </div>
+    </div>
+
+    <!-- Escenario 3D Horizontal: Carrusel con Profundidad Tridimensional -->
+    <div class="fym-stage-showcase">
+      
+      <!-- Carrusel 3D con cartas previas, activa y siguientes -->
+      <div class="fym-slider-3d-track">
+        @for (item of stageProducts; track item.id; let i = $index) {
+          <div class="fym-card-3d" 
+               [class.active]="i === activeStageIndex()"
+               [class.prev]="i === (activeStageIndex() - 1 + stageProducts.length) % stageProducts.length"
+               [class.next]="i === (activeStageIndex() + 1) % stageProducts.length"
+               (click)="setSlide(i)">
+            
+            <div class="fym-pedestal-ring" [style.borderColor]="item.accentColor"></div>
+            
+            <div class="fym-artifact-sculpture">
+              @if (item.categorySlug === 'ramos') {
+                <svg width="68" height="68" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="12" cy="8" r="4"></circle><circle cx="7" cy="11" r="3.5"></circle><circle cx="17" cy="11" r="3.5"></circle>
+                  <path d="M12 12v9"></path><path d="M8 21l4-5 4 5"></path>
+                </svg>
+              } @else if (item.categorySlug === 'pinatas') {
+                <svg width="68" height="68" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <polygon points="12 2 15 8 22 9 17 14 18 21 12 17 6 21 7 14 2 9 9 8 12 2"></polygon>
+                </svg>
+              } @else if (item.categorySlug === 'cajas') {
+                <svg width="68" height="68" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path>
+                  <path d="m3.3 7 8.7 5 8.7-5"></path><path d="M12 22V12"></path>
+                </svg>
+              } @else if (item.categorySlug === 'llaveros') {
+                <svg width="68" height="68" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="8" cy="8" r="6"></circle><path d="M12.5 12.5L21 21"></path><path d="M18 15l2 2"></path>
+                </svg>
+              } @else if (item.categorySlug === 'retrateras') {
+                <svg width="68" height="68" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect width="18" height="18" x="3" y="3" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M20.4 14.5L16 10 4 20"></path>
+                </svg>
+              } @else {
+                <svg width="68" height="68" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line>
+                </svg>
+              }
+            </div>
+
+            <!-- Sombra de Suelo Multicapa -->
+            <div class="fym-floor-shadow"></div>
+
+            <div class="fym-card-3d-label">
+              <span>{{ item.name }}</span>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Controles de Navegación del Slider -->
+      <div class="fym-stage-slider-nav">
+        <button class="fym-slider-arrow prev" (click)="prevSlide()" aria-label="Anterior">&#8592;</button>
+        <div class="fym-slider-dots">
+          @for (item of stageProducts; track item.id; let i = $index) {
+            <button class="fym-dot" [class.active]="i === activeStageIndex()" (click)="setSlide(i)" [attr.aria-label]="item.name"></button>
+          }
+        </div>
+        <button class="fym-slider-arrow next" (click)="nextSlide()" aria-label="Siguiente">&#8594;</button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- SECCIÓN CATÁLOGO INMEDIATO & PERSONALIZACIONES ACTIVAS -->
+<section class="fym-catalog-section" id="catalogo">
+  <div class="fym-catalog-container">
+    
+    <header class="fym-catalog-header">
+      <div class="fym-header-titles">
+        <span class="fym-badge-pill fym-badge-custom">Colección del Atelier</span>
+        <h2 class="fym-display">Piezas Disponibles & Diseños a Medida</h2>
+        <p>Selecciona una pieza existente para compra inmediata o solicita su versión personalizada.</p>
+      </div>
+
+      <!-- Filtros Rápidos -->
+      <div class="fym-filters-bar">
+        <button class="fym-filter-btn" [class.active]="activeFilter() === 'all'" (click)="setFilter('all')">Todos</button>
+        <button class="fym-filter-btn" [class.active]="activeFilter() === 'available'" (click)="setFilter('available')">Entrega Inmediata</button>
+        <button class="fym-filter-btn" [class.active]="activeFilter() === 'custom'" (click)="setFilter('custom')">Por Encargo</button>
+      </div>
+    </header>
+
+    <!-- Grid de Productos -->
+    @if (isLoading()) {
+      <div class="fym-catalog-loading">
+        <div class="fym-spinner"></div>
+        <span>Cargando piezas del taller...</span>
+      </div>
+    } @else {
+      <div class="fym-products-grid">
+        @for (product of filteredProducts(); track product.id) {
+          <article class="fym-product-card">
+            <div class="fym-card-image-wrap">
+              <div class="fym-card-icon-visual">
+                @if (product.categorySlug === 'ramos') {
+                  <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"></circle><circle cx="7" cy="11" r="3.5"></circle><circle cx="17" cy="11" r="3.5"></circle><path d="M12 12v9"></path></svg>
+                } @else if (product.categorySlug === 'pinatas') {
+                  <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15 8 22 9 17 14 18 21 12 17 6 21 7 14 2 9 9 8 12 2"></polygon></svg>
+                } @else if (product.categorySlug === 'cajas') {
+                  <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path></svg>
+                } @else if (product.categorySlug === 'llaveros') {
+                  <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="8" r="6"></circle><path d="M12.5 12.5L21 21"></path></svg>
+                } @else if (product.categorySlug === 'retrateras') {
+                  <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect width="18" height="18" x="3" y="3" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle></svg>
+                } @else {
+                  <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a10 10 0 0 0 0 20"></path></svg>
+                }
+              </div>
+            </div>
+
+            <div class="fym-card-body">
+              <div class="fym-card-header-row">
+                <span class="fym-card-category">{{ product.categoryName || 'Manualidad' }}</span>
+                <span class="fym-card-type-dot" [class.available]="product.commercialType === 'Available'">
+                  {{ product.commercialType === 'Available' ? 'Stock' : 'Encargo' }}
+                </span>
+              </div>
+              
+              <h3 class="fym-card-title">{{ product.name }}</h3>
+
+              <div class="fym-card-footer">
+                <div class="fym-card-price">
+                  <span class="fym-price-label">Desde:</span>
+                  <strong class="fym-price-val">C$ {{ product.basePrice | number:'1.2-2' }}</strong>
+                </div>
+
+                <a [routerLink]="['/personalizar', product.categorySlug]" class="fym-card-action-btn">
+                  {{ product.commercialType === 'Available' ? 'Ver' : 'Diseñar' }}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    }
+
+  </div>
+</section>

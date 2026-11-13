@@ -1,0 +1,183 @@
+﻿<div class="fym-negotiation-viewport">
+  <div class="fym-negotiation-header">
+    <div class="fym-header-titles">
+      <span class="fym-badge-pill fym-badge-custom">Centro de Negociación</span>
+      <h1 class="fym-display">Mis Cotizaciones & Pedidos</h1>
+      <p>Acuerda precios, personalizaciones y plazos directamente con los artesanos del taller en tiempo real.</p>
+    </div>
+  </div>
+
+  <!-- FILTROS DE CABECERA: TRATOS CERRADOS vs PENDIENTES -->
+  <div class="fym-dashboard-filter-tabs">
+    <button class="filter-tab" [class.active]="selectedFilter() === 'todos'" (click)="selectedFilter.set('todos')">
+      Todos los Pedidos ({{ orders().length }})
+    </button>
+    <button class="filter-tab" [class.active]="selectedFilter() === 'tratos_cerrados'" (click)="selectedFilter.set('tratos_cerrados')">
+      Tratos Cerrados / En Producción ({{ closedDeals().length }})
+    </button>
+    <button class="filter-tab" [class.active]="selectedFilter() === 'pendientes'" (click)="selectedFilter.set('pendientes')">
+      Pendientes de Respuesta / Cotización ({{ pendingDeals().length }})
+    </button>
+  </div>
+
+  <!-- MASTER-DETAIL LAYOUT (ANTI-CRUD ESTILO ALIBABA) -->
+  <div class="fym-master-detail-container">
+    
+    <!-- COLUMNA MASTER (LISTA DE SOLICITUDES CRONOLÓGICAS) -->
+    <aside class="fym-master-orders-list">
+      <div class="fym-orders-list-header">
+        <h3>Tus Solicitudes</h3>
+        <span class="fym-count-badge">{{ filteredOrders().length }} Visibles</span>
+      </div>
+
+      <div class="fym-cards-stream">
+        @for (ord of filteredOrders(); track ord.id) {
+          <article class="fym-order-ticket" [class.active]="activeOrder()?.id === ord.id" (click)="selectOrder(ord)">
+            <div class="fym-ticket-top">
+              <span class="fym-ticket-code">{{ ord.orderNumber }}</span>
+              <span class="fym-badge-pill" [ngClass]="getStatusBadgeClass(ord.statusText)">
+                {{ ord.statusText }}
+              </span>
+            </div>
+
+            <h4 class="fym-ticket-item">{{ ord.items?.[0]?.productName || 'Personalización Especial' }}</h4>
+
+            <div class="fym-ticket-footer">
+              <div class="fym-ticket-meta">
+                <span class="fym-meta-date">Entrega: {{ ord.estimatedDeliveryDate ? (ord.estimatedDeliveryDate | date:'mediumDate') : 'Por acordar' }}</span>
+              </div>
+              <strong class="fym-ticket-price">C$ {{ ord.totalAmount | number:'1.2-2' }}</strong>
+            </div>
+          </article>
+        }
+
+        @if (filteredOrders().length === 0) {
+          <div class="fym-empty-orders">
+            <h4>No hay pedidos en este filtro</h4>
+            <p>Selecciona otra categoría o explora el catálogo para solicitar una pieza.</p>
+            <a routerLink="/personalizar" class="fym-btn-empty-builder">Ir al Product Builder</a>
+          </div>
+        }
+      </div>
+    </aside>
+
+    <!-- COLUMNA DETAIL (NEGOCIACIÓN, CHAT EN VIVO & FORMULARIO DE ENTREGA) -->
+    <main class="fym-detail-workspace">
+      @if (activeOrder(); as ord) {
+        <div class="fym-workspace-grid">
+
+          <!-- BANDEJA DE CHAT INTEGRADA (SIGNALR / WEBSOCKETS EN VIVO) -->
+          <section class="fym-chat-section">
+            <app-negotiation-chat
+              [orderId]="ord.id"
+              [orderCode]="ord.orderNumber"
+              [targetUserName]="'Taller Flor y Más (Mesa de Artesanos)'"
+              [currentUserRole]="'Client'"
+              [isOnline]="chatService.isOtherUserOnline()"
+              [typingStatus]="chatService.otherUserTyping()"
+              [messages]="chatService.messages()"
+              (onSendMessage)="onSendMessage($event)"
+              (onSendAttachment)="onSendAttachment($event)"
+              (onAcceptOffer)="onAcceptOffer($event)"
+              (onTyping)="onTyping($event)"
+            ></app-negotiation-chat>
+          </section>
+
+          <!-- PANEL LATERAL DE CIERRE DE TRATO & VOUCHER 50% -->
+          <aside class="fym-closing-sidebar">
+            
+            <!-- Resumen de Costos y Anticipo -->
+            <div class="fym-closing-card">
+              <span class="fym-card-kicker">Resumen Económico</span>
+              <h3 class="fym-cacao">Liquidación & Anticipo</h3>
+
+              <div class="fym-cost-breakdown">
+                <div class="fym-cost-row">
+                  <span>Valor de la Pieza</span>
+                  <strong>C$ {{ ord.totalAmount | number:'1.2-2' }}</strong>
+                </div>
+                <div class="fym-cost-row">
+                  <span>Costo de Delivery</span>
+                  <strong>C$ {{ appliesDelivery() ? deliveryFee() : 0 | number:'1.2-2' }}</strong>
+                </div>
+                <div class="fym-cost-divider"></div>
+                <div class="fym-cost-row highlight">
+                  <span>Anticipo Requerido (50%)</span>
+                  <strong class="fym-terracotta">C$ {{ (ord.totalAmount * 0.5) | number:'1.2-2' }}</strong>
+                </div>
+                <div class="fym-cost-row sub">
+                  <span>Saldo Contra Entrega</span>
+                  <span>C$ {{ (ord.totalAmount * 0.5) | number:'1.2-2' }}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Paso 2: Logística de Entrega -->
+            @if (isQuoteAccepted()) {
+              <div class="fym-closing-card fym-fade-in">
+                <span class="fym-card-kicker">Logística de Entrega</span>
+                <h3 class="fym-cacao">¿A dónde enviamos tu pieza?</h3>
+
+                <form class="fym-delivery-form">
+                  <div class="fym-field">
+                    <label>Nombre de quien recibe</label>
+                    <input type="text" [(ngModel)]="recipientName" name="recipient" placeholder="Nombre completo" />
+                  </div>
+
+                  <div class="fym-field">
+                    <label>Dirección exacta</label>
+                    <textarea rows="2" [(ngModel)]="exactAddress" name="address" placeholder="Ciudad, Barrio, Punto de referencia"></textarea>
+                  </div>
+
+                  <div class="fym-field">
+                    <label>Horario preferido</label>
+                    <input type="text" [(ngModel)]="deliveryTime" name="time" />
+                  </div>
+                </form>
+              </div>
+
+              <!-- Paso 3: Cuentas Bancarias & Subida de Comprobante -->
+              <div class="fym-closing-card fym-fade-in">
+                <span class="fym-card-kicker">Garantía de Producción</span>
+                <h3 class="fym-cacao">Abono del 50%</h3>
+
+                <div class="fym-bank-accounts">
+                  <div class="fym-bank-item">
+                    <strong>BAC Débito Córdobas:</strong>
+                    <span>362-899123-0 (Flor y Más Taller)</span>
+                  </div>
+                  <div class="fym-bank-item">
+                    <strong>Banpro Débito Córdobas:</strong>
+                    <span>1002-348911-2 (María Flores)</span>
+                  </div>
+                </div>
+
+                @if (!proofSuccess()) {
+                  <div class="fym-voucher-upload-box">
+                    <input type="file" id="voucherFile" (change)="onVoucherFile($event)" accept="image/*,.pdf" style="display: none;" />
+                    <label for="voucherFile" class="fym-voucher-drop">
+                      <span>{{ uploadedVoucherName() ? uploadedVoucherName() : 'Subir Comprobante (Foto o PDF)' }}</span>
+                    </label>
+
+                    <button type="button" class="fym-btn-confirm-voucher" (click)="confirmVoucherUpload()" [disabled]="isSubmittingProof()">
+                      {{ isSubmittingProof() ? 'Validando...' : 'Confirmar y Pasar a Producción' }}
+                    </button>
+                  </div>
+                } @else {
+                  <div class="fym-proof-success-box">
+                    <div class="fym-proof-check">OK</div>
+                    <h4>¡Comprobante Registrado!</h4>
+                    <p>El taller ha recibido tu pago del 50%. Tu pieza entra en producción artesanal.</p>
+                    <a [routerLink]="['/comprobante', ord.id]" class="fym-btn-view-invoice">
+                      Descargar Factura Digital / Recibo
+                    </a>
+                  </div>
+                }
+              </div>
+            }
+          </aside>
+        </div>
+      }
+    </main>
+  </div>
+</div>

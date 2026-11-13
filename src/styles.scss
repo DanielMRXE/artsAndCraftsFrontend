@@ -1,0 +1,125 @@
+﻿/* ==========================================================================
+   SISTEMA DE DISEÑO VISUAL "FLOR Y MÁS"
+   Editorial Sans & Tactile Warm Minimalism (100% Sin Serifas)
+   Utiliza constantes centralizadas de _variables.scss
+   ========================================================================== */
+
+@import './styles/variables';
+
+:root {
+  /* Lienzo & Superficie (Blush & Rosas) */
+  --fym-canvas: #{$fym-color-canvas};
+  --fym-surface: #{$fym-color-surface};
+  --fym-surface-card: #{$fym-color-surface-card};
+  --fym-surface-glass: #{$fym-color-surface-glass};
+  --fym-border: #{$fym-color-border};
+  --fym-border-subtle: #{$fym-color-border-subtle};
+
+  /* Rosa Artesanal Protagonista */
+  --fym-rose-primary: #{$fym-color-rose-primary};
+  --fym-rose-dark: #{$fym-color-rose-dark};
+  --fym-rose-light: #{$fym-color-rose-light};
+  --fym-cacao: #{$fym-color-ink};
+  --fym-cacao-deep: #{$fym-color-ink-deep};
+  --fym-terracotta: #{$fym-color-rose-primary};
+  --fym-terracotta-dark: #{$fym-color-rose-dark};
+  --fym-terracotta-light: #{$fym-color-rose-light};
+
+  /* Rosa Secundario y Acentos */
+  --fym-rose-soft: #{$fym-color-rose-soft};
+  --fym-rose-accent: #{$fym-color-rose-accent};
+  --fym-sage: #{$fym-color-sage};
+  --fym-sage-deep: #{$fym-color-sage-deep};
+  --fym-sage-light: #{$fym-color-sage-light};
+  --fym-honey: #{$fym-color-honey};
+  --fym-honey-light: #{$fym-color-honey-light};
+
+  /* Tipografía y Lectura */
+  --fym-ink: #{$fym-color-ink};
+  --fym-ink-secondary: #{$fym-color-ink-secondary};
+  --fym-ink-muted: #{$fym-color-ink-muted};
+  --fym-ink-light: #{$fym-color-ink-light};
+
+  /* Fuentes Sans-Serif Modernas (Cero Serifas) */
+  --fym-font-display: #{$fym-font-display};
+  --fym-font-sans: #{$fym-font-sans};
+
+  /* Radios Suaves y Cápsulas */
+  --fym-radius-xs: #{$fym-radius-xs};
+  --fym-radius-sm: #{$fym-radius-sm};
+  --fym-radius-md: #{$fym-radius-md};
+  --fym-radius-lg: #{$fym-radius-lg};
+  --fym-radius-pill: #{$fym-radius-pill};
+
+  /* Elevaciones 3D Táctiles con Acento Rosa */
+  --fym-shadow-stage: #{$fym-shadow-stage};
+  --fym-shadow-card: #{$fym-shadow-card};
+  --fym-shadow-floating: #{$fym-shadow-floating};
+  --fym-shadow-drop: #{$fym-shadow-drop};
+
+  /* Transición física de resorte */
+  --fym-spring: #{$fym-spring};
+  --fym-transition-smooth: #{$fym-transition-smooth};
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--fym-font-sans);
+  background-color: var(--fym-canvas);
+  color: var(--fym-ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .fym-display {
+  font-family: var(--fym-font-display);
+  color: var(--fym-cacao);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--fym-font-sans);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Clases Utilitarias Anti-CRUD */
+.fym-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--fym-radius-pill);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.fym-badge-available {
+  background-color: var(--fym-sage-light);
+  color: var(--fym-sage-deep);
+}
+
+.fym-badge-custom {
+  background-color: var(--fym-terracotta-light);
+  color: var(--fym-terracotta-dark);
+}

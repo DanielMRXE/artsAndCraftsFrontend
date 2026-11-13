@@ -1,0 +1,162 @@
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #FFFFFF;
+  border: 1px solid #F1D4DB;
+  border-radius: 16px;
+  overflow: hidden;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.chat-header {
+  padding: 12px 18px;
+  background: #FFF8F9;
+  border-bottom: 1px solid #F6DFE5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.user-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.avatar-badge {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #D9536F;
+  color: #FFF;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.online-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #BBB;
+  border: 2px solid #FFF;
+  &.is-online { background: #28a745; }
+}
+.user-title { font-weight: 700; color: #1A0D12; font-size: 0.95rem; }
+.user-subtitle { font-size: 0.78rem; display: flex; gap: 8px; align-items: center; }
+.text-online { color: #28a745; font-weight: 600; }
+.text-offline { color: #8C7A82; }
+.typing-pill { color: #D9536F; font-style: italic; }
+.chat-badge-order {
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: #FCE8ED;
+  color: #9C1838;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+.chat-messages {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #FAF8F8;
+}
+.message-row {
+  display: flex;
+  justify-content: flex-start;
+  &.mine { justify-content: flex-end; }
+}
+.bubble {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: #FFFFFF;
+  border: 1px solid #F1D4DB;
+  color: #1A0D12;
+  font-size: 0.9rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+.message-row.mine .bubble {
+  background: #D9536F;
+  color: #FFFFFF;
+  border-color: #D9536F;
+}
+.proposal-card {
+  background: #FFF5F7 !important;
+  border: 1.5px solid #D9536F !important;
+  color: #1A0D12 !important;
+}
+.deal-proposal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.deal-label { font-weight: 700; color: #9C1838; font-size: 0.85rem; text-transform: uppercase; }
+.deal-price { font-weight: 800; font-size: 1.15rem; color: #D9536F; }
+.deal-details { font-size: 0.85rem; color: #555; margin-bottom: 10px; }
+.btn-deal-accept {
+  width: 100%;
+  background: #D9536F;
+  color: #FFF;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  &:hover { background: #B33D55; }
+}
+.msg-attachment img { max-width: 240px; border-radius: 8px; margin-top: 4px; display: block; }
+.msg-audio audio { max-width: 220px; height: 36px; margin-top: 4px; }
+.meta-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+  font-size: 0.72rem;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+.read-ticks.is-read { color: #38bdf8; font-weight: 900; }
+.chat-input-bar {
+  padding: 10px 14px;
+  background: #FFF;
+  border-top: 1px solid #F1D4DB;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.chat-input {
+  flex: 1;
+  border: 1px solid #E5C3CC;
+  border-radius: 20px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  outline: none;
+  &:focus { border-color: #D9536F; }
+}
+.btn-icon {
+  background: none;
+  border: none;
+  color: #8C7A82;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  &:hover { color: #D9536F; }
+}
+.btn-send {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #D9536F;
+  color: #FFF;
+  border: none;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
