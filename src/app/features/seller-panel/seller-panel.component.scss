@@ -2,60 +2,61 @@
 @use './seller-panel-cards.scss' as *;
 
 // ==========================================================================
-// FLOR Y MÁS - SELLER PANEL: WARM EDITORIAL MINIMALISM
-// Zero Emojis • Espaciado Orgánico • Tipografía de Impacto • Sombras Suaves
+// FLOR Y MÁS - SELLER PANEL: REFINED EDITORIAL WORKSPACE
+// Anti-AI Design • Paleta Neutra Noble • Hairline Borders • Sin Resplandores
 // ==========================================================================
 
 .fym-seller-viewport {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 32px 32px 100px;
-  background: #FFF8F9;
+  padding: 32px 32px 80px;
+  background: var(--fym-canvas, #FAF7F4);
   min-height: 100vh;
+  box-sizing: border-box;
 }
 
 // --------------------------------------------------------------------------
-// TOPBAR MINIMALISTA & FLOTANTE
+// TOPBAR REFINADA & SOBRIA
 // --------------------------------------------------------------------------
 .fym-seller-topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 36px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--fym-border, #E8E2DC);
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 16px;
 
   .fym-topbar-left {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
   }
 
   .fym-btn-kebab {
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
     background: #FFFFFF;
-    border: 1px solid rgba(217, 83, 111, 0.12);
-    color: #2A171D;
+    border: 1px solid var(--fym-border, #E8E2DC);
+    color: var(--fym-ink, #1C1917);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(42, 23, 29, 0.04);
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    transition: all 0.15s ease;
 
     &:hover {
-      background: #FDF2F4;
-      border-color: #D9536F;
-      color: #D9536F;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(217, 83, 111, 0.12);
+      background: var(--fym-surface, #F4EFEB);
+      border-color: #D6D3D1;
+      color: var(--fym-ink-deep, #0C0A09);
     }
 
     .kebab-icon {
-      width: 22px;
-      height: 22px;
+      width: 18px;
+      height: 18px;
     }
   }
 
@@ -65,168 +66,125 @@
     gap: 2px;
 
     .fym-badge-meta {
-      font-size: 0.72rem;
-      font-weight: 800;
+      font-size: 0.7rem;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #D9536F;
+      color: var(--fym-ink-muted, #8C857E);
     }
 
     .fym-title-atelier {
-      font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
-      font-size: 2.1rem;
-      font-weight: 800;
-      color: #2A171D;
-      letter-spacing: -0.03em;
+      font-family: var(--fym-font-sans);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--fym-ink, #1C1917);
+      letter-spacing: -0.02em;
       margin: 0;
-      line-height: 1.1;
     }
   }
 
-  // Cápsula flotante estilo Velvetspoon
-  .fym-segmented-capsule {
+  .fym-topbar-right {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(217, 83, 111, 0.14);
-    padding: 6px;
-    border-radius: 9999px;
-    box-shadow: 0 10px 30px -4px rgba(42, 23, 29, 0.05);
+    gap: 12px;
+  }
 
-    button {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 22px;
-      border-radius: 9999px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #654E56;
-      background: transparent;
+  .fym-search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #FFFFFF;
+    border: 1px solid var(--fym-border, #E8E2DC);
+    border-radius: 6px;
+    padding: 0 12px;
+    height: 40px;
+    width: 260px;
+    transition: border-color 0.15s ease;
+
+    &:focus-within {
+      border-color: var(--fym-ink, #1C1917);
+    }
+
+    .search-icon {
+      width: 15px;
+      height: 15px;
+      color: var(--fym-ink-muted, #8C857E);
+      flex-shrink: 0;
+    }
+
+    input {
       border: none;
-      cursor: pointer;
-      transition: all 0.22s ease;
+      background: transparent;
+      outline: none;
+      font-size: 0.85rem;
+      color: var(--fym-ink, #1C1917);
+      width: 100%;
+      font-family: var(--fym-font-sans);
 
-      .capsule-counter {
-        background: rgba(217, 83, 111, 0.12);
-        color: #D9536F;
-        font-size: 0.7rem;
-        font-weight: 800;
-        padding: 2px 7px;
-        border-radius: 9999px;
-      }
-
-      &:hover:not(.active) {
-        color: #2A171D;
-        background: rgba(217, 83, 111, 0.04);
-      }
-
-      &.active {
-        background: #2A171D;
-        color: #FFFFFF;
-        box-shadow: 0 4px 14px rgba(42, 23, 29, 0.18);
-
-        .capsule-counter {
-          background: #D9536F;
-          color: #FFFFFF;
-        }
+      &::placeholder {
+        color: var(--fym-ink-muted, #8C857E);
       }
     }
   }
-}
 
-// --------------------------------------------------------------------------
-// STRIP DE MÉTRICAS EDITORIALES (SIN BORDES DUROS, CON ELEVACIÓN ORGÁNICA)
-// --------------------------------------------------------------------------
-.fym-editorial-metrics {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-  margin-bottom: 36px;
-
-  .metric-cell {
-    background: #FFFFFF;
-    border-radius: 16px;
-    padding: 24px 28px;
-    border: 1px solid rgba(217, 83, 111, 0.08);
-    box-shadow: 0 12px 32px -4px rgba(217, 83, 111, 0.06), 0 4px 12px -2px rgba(42, 23, 29, 0.02);
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+  .fym-btn-logout {
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 6px;
+    background: transparent;
+    border: 1px solid var(--fym-border, #E8E2DC);
+    color: var(--fym-ink-secondary, #57534E);
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: var(--fym-font-sans);
     cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.15s ease;
 
     &:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 20px 40px -8px rgba(217, 83, 111, 0.14);
-      border-color: rgba(217, 83, 111, 0.22);
-    }
-
-    .metric-meta {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      font-weight: 800;
-      color: #957A84;
-      letter-spacing: 0.06em;
-    }
-
-    .metric-value {
-      font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
-      font-size: 2.4rem;
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin: 4px 0;
-
-      &.text-terracotta { color: #D9536F; }
-      &.text-honey { color: #C48E44; }
-      &.text-sage { color: #4D7058; }
-      &.text-cacao { color: #2A171D; }
-    }
-
-    .metric-caption {
-      font-size: 0.82rem;
-      color: #654E56;
-      font-weight: 500;
+      background: #FFFFFF;
+      border-color: #D6D3D1;
+      color: var(--fym-ink, #1C1917);
     }
   }
 }
 
-@media (max-width: 900px) {
-  .fym-seller-viewport {
-    padding: 16px 12px 80px;
-  }
-  .fym-seller-topbar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 16px;
-    margin-bottom: 24px;
+// --------------------------------------------------------------------------
+// STRIP DE ESTADÍSTICAS KPI (DATOS REALES, CERO CAJAS GIGANTES)
+// --------------------------------------------------------------------------
+.fym-kpi-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
 
-    .fym-topbar-left {
-      gap: 14px;
-      .fym-title-atelier {
-        font-size: 1.6rem;
-      }
+  .kpi-stat-item {
+    background: #FFFFFF;
+    border: 1px solid var(--fym-border, #E8E2DC);
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .stat-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--fym-ink-muted, #8C857E);
     }
 
-    .fym-segmented-capsule {
-      overflow-x: auto;
-      justify-content: flex-start;
-      border-radius: var(--fym-radius-pill, 9999px);
-      padding: 4px;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      &::-webkit-scrollbar {
-        display: none;
-      }
+    .stat-number {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--fym-ink, #1C1917);
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+    }
 
-      button {
-        padding: 8px 16px;
-        font-size: 0.8rem;
-        white-space: nowrap;
-        flex-shrink: 0;
-      }
+    .stat-subtext {
+      font-size: 0.75rem;
+      color: var(--fym-ink-secondary, #57534E);
     }
   }
 }

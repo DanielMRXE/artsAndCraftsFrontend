@@ -1,15 +1,14 @@
-// ==========================================
+// ==========================================================================
 // SELLER PANEL - DRAWER & RESPONSIVE STYLES
-// Warm Editorial Minimalism & Tactile Glass
-// ==========================================
+// Refined Minimalist Drawer • Hairline Divider • Neutral Typography
+// ==========================================================================
 
 .fym-drawer-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(42, 23, 29, 0.45);
-  backdrop-filter: blur(8px);
+  background: rgba(28, 25, 23, 0.4);
   z-index: 998;
-  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: fadeIn 0.15s ease-out;
 }
 
 .fym-sidebar-drawer {
@@ -17,15 +16,16 @@
   top: 0;
   left: 0;
   bottom: 0;
-  width: 340px;
-  max-width: 88vw;
+  width: 300px;
+  max-width: 85vw;
   background: #FFFFFF;
   z-index: 999;
-  box-shadow: 10px 0 40px rgba(42, 23, 29, 0.12);
+  border-right: 1px solid var(--fym-border, #E8E2DC);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
   transform: translateX(-100%);
-  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 
   &.open {
     transform: translateX(0);
@@ -35,204 +35,124 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 22px;
-    border-bottom: 1px solid rgba(217, 83, 111, 0.1);
-    background: #FFF8F9;
+    padding: 20px;
+    border-bottom: 1px solid var(--fym-border, #E8E2DC);
+    background: var(--fym-surface, #F4EFEB);
 
     .drawer-user-info {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
 
       .drawer-user-avatar {
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-        background: #FDF2F4;
-        border: 1px solid rgba(217, 83, 111, 0.18);
+        width: 36px;
+        height: 36px;
+        border-radius: 6px;
+        background: #FFFFFF;
+        border: 1px solid var(--fym-border, #E8E2DC);
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #D9536F;
-        box-shadow: 0 4px 12px rgba(217, 83, 111, 0.08);
+        color: var(--fym-ink, #1C1917);
 
         .fym-svg-icon {
-          width: 22px;
-          height: 22px;
+          width: 18px;
+          height: 18px;
         }
       }
 
       .drawer-user-name {
-        font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
-        font-size: 1.05rem;
-        font-weight: 800;
-        color: #2A171D;
+        font-family: var(--fym-font-sans);
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--fym-ink, #1C1917);
         margin: 0;
         letter-spacing: -0.01em;
       }
 
       .drawer-user-role {
-        font-size: 0.74rem;
-        font-weight: 700;
-        color: #957A84;
-        letter-spacing: 0.02em;
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: var(--fym-ink-muted, #8C857E);
+        letter-spacing: 0.04em;
         text-transform: uppercase;
       }
     }
 
-    .btn-close-drawer {
+    .drawer-close-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 4px;
       background: transparent;
       border: none;
-      color: #957A84;
-      cursor: pointer;
-      padding: 8px;
-      border-radius: 8px;
+      color: var(--fym-ink-secondary, #57534E);
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s;
+      cursor: pointer;
 
       &:hover {
-        background: #FDF2F4;
-        color: #D9536F;
-      }
-
-      .fym-svg-icon {
-        width: 20px;
-        height: 20px;
+        background: var(--fym-border, #E8E2DC);
+        color: var(--fym-ink, #1C1917);
       }
     }
   }
 
-  .fym-drawer-body {
-    flex: 1;
-    overflow-y: auto;
-    padding: 24px 18px;
+  .fym-drawer-nav {
+    padding: 16px 12px;
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 4px;
+    flex: 1;
 
-    .drawer-section {
+    .drawer-nav-item {
       display: flex;
-      flex-direction: column;
-      gap: 6px;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--fym-ink-secondary, #57534E);
+      background: transparent;
+      border: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.15s ease;
 
-      .drawer-section-title {
-        font-size: 0.72rem;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: #957A84;
-        padding: 0 12px 6px;
+      .fym-svg-icon {
+        width: 18px;
+        height: 18px;
+        color: var(--fym-ink-muted, #8C857E);
       }
 
-      .drawer-nav-item {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 10px 14px;
-        border-radius: 10px;
-        background: transparent;
-        border: none;
-        width: 100%;
-        text-align: left;
-        cursor: pointer;
-        color: #2A171D;
-        font-size: 0.88rem;
-        font-weight: 700;
-        transition: all 0.18s ease;
+      &:hover {
+        background: var(--fym-surface, #F4EFEB);
+        color: var(--fym-ink, #1C1917);
 
         .fym-svg-icon {
-          width: 18px;
-          height: 18px;
-          color: #957A84;
-          flex-shrink: 0;
-          transition: color 0.18s;
+          color: var(--fym-ink, #1C1917);
         }
+      }
 
-        .nav-label {
-          flex: 1;
-        }
+      &.active {
+        background: var(--fym-ink, #1C1917);
+        color: #FFFFFF;
+        font-weight: 600;
 
-        .nav-counter {
-          font-size: 0.72rem;
-          font-weight: 800;
-          padding: 2px 8px;
-          border-radius: 9999px;
-          background: #FDF2F4;
-          color: #654E56;
-
-          &.badge-pending {
-            background: #FDF2F4;
-            color: #D9536F;
-            border: 1px solid rgba(217, 83, 111, 0.2);
-          }
-          &.badge-process {
-            background: #FBF4E8;
-            color: #B45309;
-            border: 1px solid rgba(196, 142, 68, 0.25);
-          }
-          &.badge-done {
-            background: #EEF5F0;
-            color: #2F4C37;
-            border: 1px solid rgba(77, 112, 88, 0.25);
-          }
-        }
-
-        &:hover {
-          background: #FFF8F9;
-          color: #D9536F;
-          .fym-svg-icon { color: #D9536F; }
-        }
-
-        &.active {
-          background: #2A171D;
+        .fym-svg-icon {
           color: #FFFFFF;
-          .fym-svg-icon { color: #FFFFFF; }
-          .nav-counter {
-            background: rgba(255, 255, 255, 0.2);
-            color: #FFFFFF;
-            border: none;
-          }
         }
       }
     }
   }
 
   .fym-drawer-footer {
-    padding: 18px 22px;
-    border-top: 1px solid rgba(217, 83, 111, 0.1);
-    background: #FFF8F9;
-
-    .drawer-logout-btn {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 12px;
-      border-radius: 10px;
-      background: #FFFFFF;
-      border: 1px solid rgba(217, 83, 111, 0.2);
-      color: #D9536F;
-      font-weight: 800;
-      font-size: 0.88rem;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(42, 23, 29, 0.03);
-      transition: all 0.2s;
-
-      .fym-svg-icon {
-        width: 18px;
-        height: 18px;
-      }
-
-      &:hover {
-        background: #D9536F;
-        color: #FFFFFF;
-        border-color: #D9536F;
-        box-shadow: 0 4px 14px rgba(217, 83, 111, 0.25);
-      }
-    }
+    padding: 16px 20px;
+    border-top: 1px solid var(--fym-border, #E8E2DC);
+    font-size: 0.72rem;
+    color: var(--fym-ink-muted, #8C857E);
   }
 }
 

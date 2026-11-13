@@ -1,54 +1,55 @@
 /* ==========================================================================
-   FLOR Y MÁS - DESIGN TOKENS & SCSS VARIABLES (GLOBAL CONSTANTS)
-   Centralized Design System Constants
+   FLOR Y MÁS - DESIGN TOKENS (EDITORIAL MINIMALIST ARCHITECTURE)
+   Calibración Humana Senior: Paleta Sobria, Cero Iluminaciones Neón de IA,
+   Bordes Hairline Neutros, Sombras Naturales y Tipografía Proporcionada.
    ========================================================================== */
 
-// --- PALETA PRINCIPAL (ROSA ARTESANAL & BLUSH ATELIER) ---
-$fym-color-canvas: #FFF8F9;
-$fym-color-surface: #FDEEF1;
-$fym-color-surface-card: #FFFFFF;
-$fym-color-surface-glass: rgba(255, 255, 255, 0.88);
-$fym-color-border: rgba(217, 83, 111, 0.12);
-$fym-color-border-subtle: rgba(217, 83, 111, 0.05);
+// --- PALETA BASE (NEUTROS EDITORIALES CÁLIDOS) ---
+$fym-color-canvas: #FAF7F4;              // Lienzo suave marfil / lino natural
+$fym-color-surface: #F4EFEB;             // Superficie secundaria sutil
+$fym-color-surface-card: #FFFFFF;        // Superficie pura sin brillos
+$fym-color-surface-glass: #FFFFFF;       // Cero transparencias de IA; superficie sólida
+$fym-color-border: #E8E2DC;              // Borde hairline neutro físico
+$fym-color-border-subtle: #F0EBE5;       // Separador hairline hiper-tenue
 
-// --- ACENTOS ROSA & IDENTIDAD ---
-$fym-color-rose-primary: #D9536F;       // Rosa Peonía / Fresa Principal
-$fym-color-rose-dark: #B93753;          // Rosa Frambuesa para Hovers
-$fym-color-rose-light: #FDE8EC;         // Rosa Pastel Suave para Badges y Pills
-$fym-color-rose-soft: #F4A7B5;          // Rosa Suave Intermedio
-$fym-color-rose-accent: #E85B7A;        // Rosa Neón Acento
+// --- ACENTO DE MARCA (ORGANIC ROSE & TERRACOTTA DISCRETO) ---
+$fym-color-rose-primary: #C25E73;        // Rosa artesanal mate / peonía vintage (desaturado)
+$fym-color-rose-dark: #A14457;           // Tono profundo para hover sobrio
+$fym-color-rose-light: #F7EDEF;          // Fondo tenue para estados de acento
+$fym-color-rose-soft: #E2B5BF;           // Rosa empolvado neutro
+$fym-color-rose-accent: #C25E73;         // Cero fucsia neón
 
-// --- CONTRASTES DE TINTA (CERO MARRÓN) ---
-$fym-color-ink: #2A171D;                // Tinta Grosella Oscura
-$fym-color-ink-deep: #1A0D12;           // Tinta Profunda para Footers
-$fym-color-ink-secondary: #654E56;      // Texto Secundario
-$fym-color-ink-muted: #957A84;          // Texto Desactivado / Labels
-$fym-color-ink-light: #C6B3BA;          // Bordes Finos
+// --- CONTRASTES DE TINTA (LEGIBILIDAD EDITORIAL PURA) ---
+$fym-color-ink: #1C1917;                 // Carbón cálido / Tinta tipográfica (Stone 900)
+$fym-color-ink-deep: #0C0A09;            // Tinta máxima para contrastes
+$fym-color-ink-secondary: #57534E;       // Neutro medio para descripciones (Stone 600)
+$fym-color-ink-muted: #8C857E;           // Metadatos y etiquetas secundarias
+$fym-color-ink-light: #D6D3D1;           // Hairlines divisorios
 
-// --- ACENTOS COMPLEMENTARIOS BOTÁNICOS ---
-$fym-color-sage: #4D7058;               // Verde Salvia Botánico
-$fym-color-sage-deep: #2F4C37;          // Verde Salvia Profundo
-$fym-color-sage-light: #EEF5F0;         // Verde Menta Suave
-$fym-color-honey: #C48E44;              // Miel / Dorado Cálido
-$fym-color-honey-light: #FBF4E8;        // Miel Suave
+// --- ESTADOS SEMÁNTICOS ORGÁNICOS (CERO FOSFORESCENCIAS) ---
+$fym-color-sage: #3F5E4D;                // Verde bosque / oliva para confirmados
+$fym-color-sage-deep: #2A4034;           // Verde profundo
+$fym-color-sage-light: #EDF3EF;          // Fondo verde apagado
+$fym-color-honey: #966A2B;               // Ocre ámbar tenue para pendientes
+$fym-color-honey-light: #FBF6EE;         // Fondo ámbar sutil
 
-// --- TIPOGRAFÍAS MODERNAS SANS-SERIF (CERO SERIFAS) ---
-$fym-font-display: 'Syne', 'Plus Jakarta Sans', sans-serif;
+// --- TIPOGRAFÍAS ---
+$fym-font-display: 'Playfair Display', 'Syne', serif;
 $fym-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-// --- RADIOS Y GEOMETRÍA ---
-$fym-radius-xs: 6px;
-$fym-radius-sm: 10px;
-$fym-radius-md: 16px;
-$fym-radius-lg: 24px;
+// --- GEOMETRÍA REFINADA (CERO BORDES HIPERTROFIADOS) ---
+$fym-radius-xs: 4px;
+$fym-radius-sm: 6px;
+$fym-radius-md: 10px;
+$fym-radius-lg: 14px;
 $fym-radius-pill: 9999px;
 
-// --- ELEVACIONES 3D TÁCTILES ---
-$fym-shadow-stage: 0 35px 60px -15px rgba(217, 83, 111, 0.18), 0 15px 25px -10px rgba(42, 23, 29, 0.08);
-$fym-shadow-card: 0 12px 32px -4px rgba(217, 83, 111, 0.08), 0 4px 12px -2px rgba(42, 23, 29, 0.03);
-$fym-shadow-floating: 0 20px 40px -8px rgba(217, 83, 111, 0.15), 0 0 1px rgba(217, 83, 111, 0.2);
-$fym-shadow-drop: 0 25px 30px -10px rgba(217, 83, 111, 0.25);
+// --- ELEVACIONES FÍSICAS SOBRIAS (CERO RESPLANDORES DE COLOR ROSA) ---
+$fym-shadow-stage: 0 4px 20px rgba(28, 25, 23, 0.05);
+$fym-shadow-card: 0 1px 3px rgba(28, 25, 23, 0.04), 0 1px 2px rgba(28, 25, 23, 0.02);
+$fym-shadow-floating: 0 12px 32px rgba(28, 25, 23, 0.08);
+$fym-shadow-drop: 0 2px 8px rgba(28, 25, 23, 0.04);
 
-// --- FÍSICA Y TRANSICIONES ---
-$fym-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-$fym-transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+// --- TRANSICIONES DISCRETAS ---
+$fym-spring: cubic-bezier(0.16, 1, 0.3, 1);
+$fym-transition-smooth: all 0.18s ease-out;

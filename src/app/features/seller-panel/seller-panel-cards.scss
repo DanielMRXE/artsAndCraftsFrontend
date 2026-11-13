@@ -1,55 +1,59 @@
 // ==========================================================================
-// FLOR Y MÁS - SELLER PANEL: TIMELINE & CARDS (EDITORIAL TACTILE)
-// Anti-CRUD • Zero Emojis • Elevación 3D • Tipografía Syne/Plus Jakarta
+// FLOR Y MÁS - SELLER PANEL: TIMELINE & CARDS (EDITORIAL ARCHITECTURE)
+// Anti-AI • Cero Resplandores • Separadores Hairline • Tipografía Limpia
 // ==========================================================================
 
 .fym-filter-strip {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   margin-bottom: 24px;
   flex-wrap: wrap;
 
   .filter-heading {
-    font-size: 0.8rem;
-    font-weight: 800;
+    font-size: 0.72rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #957A84;
+    letter-spacing: 0.06em;
+    color: var(--fym-ink-muted, #8C857E);
+    margin-right: 6px;
   }
 
   .fym-filter-pill {
-    padding: 7px 16px;
-    border-radius: 9999px;
-    font-size: 0.82rem;
-    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
     background: #FFFFFF;
-    border: 1px solid rgba(217, 83, 111, 0.14);
-    color: #654E56;
+    border: 1px solid var(--fym-border, #E8E2DC);
+    color: var(--fym-ink-secondary, #57534E);
     cursor: pointer;
-    box-shadow: 0 2px 6px rgba(42, 23, 29, 0.02);
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.15s ease;
 
     &:hover {
-      border-color: #D9536F;
-      color: #D9536F;
-      transform: translateY(-1px);
+      border-color: var(--fym-ink-light, #D6D3D1);
+      color: var(--fym-ink, #1C1917);
+      background: var(--fym-surface, #F4EFEB);
     }
 
     &.active {
-      background: #D9536F;
+      background: var(--fym-ink, #1C1917);
       color: #FFFFFF;
-      border-color: #D9536F;
-      box-shadow: 0 4px 12px rgba(217, 83, 111, 0.25);
+      border-color: var(--fym-ink, #1C1917);
+      font-weight: 600;
     }
   }
 }
 
 .fym-editorial-canvas {
   display: grid;
-  grid-template-columns: 390px 1fr;
-  gap: 32px;
+  grid-template-columns: 380px 1fr;
+  gap: 24px;
   align-items: start;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 // --------------------------------------------------------------------------
@@ -57,156 +61,159 @@
 // --------------------------------------------------------------------------
 .fym-orders-timeline {
   background: #FFFFFF;
-  border-radius: 20px;
-  border: 1px solid rgba(217, 83, 111, 0.1);
-  padding: 24px;
-  box-shadow: 0 12px 32px -4px rgba(217, 83, 111, 0.06);
-  max-height: calc(100vh - 270px);
+  border-radius: 8px;
+  border: 1px solid var(--fym-border, #E8E2DC);
+  padding: 20px;
+  max-height: calc(100vh - 240px);
   overflow-y: auto;
 
   .timeline-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     padding-bottom: 12px;
-    border-bottom: 1px solid #FDF2F4;
+    border-bottom: 1px solid var(--fym-border-subtle, #F0EBE5);
 
     h3 {
-      font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: #2A171D;
-      letter-spacing: -0.02em;
+      font-family: var(--fym-font-sans);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--fym-ink, #1C1917);
+      letter-spacing: -0.01em;
       margin: 0;
     }
 
     .timeline-hint {
-      font-size: 0.72rem;
-      font-weight: 700;
+      font-size: 0.7rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #957A84;
+      letter-spacing: 0.05em;
+      color: var(--fym-ink-muted, #8C857E);
     }
   }
 
   .timeline-stream {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
   }
 
   .timeline-card {
-    background: #FFF8F9;
-    border: 1px solid rgba(217, 83, 111, 0.1);
-    border-radius: 14px;
-    padding: 18px 20px;
+    background: #FFFFFF;
+    border: 1px solid var(--fym-border-subtle, #F0EBE5);
+    border-radius: 6px;
+    padding: 14px 16px;
     cursor: pointer;
-    transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.15s ease;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
 
     &:hover {
-      border-color: rgba(217, 83, 111, 0.4);
-      background: #FFFFFF;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(217, 83, 111, 0.08);
+      border-color: var(--fym-ink-light, #D6D3D1);
+      background: var(--fym-surface, #F4EFEB);
     }
 
     &.selected {
       background: #FFFFFF;
-      border-color: #D9536F;
-      box-shadow: 0 10px 28px rgba(217, 83, 111, 0.15);
-      border-left: 5px solid #D9536F;
+      border-color: var(--fym-ink, #1C1917);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+      border-left: 3px solid var(--fym-ink, #1C1917);
     }
 
     .card-headline {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
 
       .order-code {
-        font-family: 'Syne', monospace;
-        font-size: 0.82rem;
-        font-weight: 800;
-        color: #2A171D;
+        font-family: monospace;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--fym-ink-secondary, #57534E);
         letter-spacing: 0.02em;
       }
     }
 
     .card-client {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: #1A0D12;
+      font-family: var(--fym-font-sans);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--fym-ink, #1C1917);
       margin: 0;
       letter-spacing: -0.01em;
     }
 
     .card-craft {
-      font-size: 0.85rem;
-      color: #654E56;
-      margin: 0 0 8px;
-      line-height: 1.35;
+      font-size: 0.82rem;
+      color: var(--fym-ink-secondary, #57534E);
+      margin: 0 0 6px;
+      line-height: 1.4;
     }
 
     .card-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid rgba(217, 83, 111, 0.08);
-      padding-top: 10px;
-      margin-top: 2px;
-
-      .card-date {
-        font-size: 0.78rem;
-        color: #957A84;
-        font-weight: 600;
-      }
+      border-top: 1px solid var(--fym-border-subtle, #F0EBE5);
+      padding-top: 8px;
 
       .card-price {
-        font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
-        font-size: 1.05rem;
-        font-weight: 800;
-        color: #D9536F;
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: var(--fym-ink, #1C1917);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .card-date {
+        font-size: 0.72rem;
+        color: var(--fym-ink-muted, #8C857E);
       }
     }
   }
 }
 
 // --------------------------------------------------------------------------
-// STATUS PILLS (ESTÉTICA EDITORIAL)
+// BADGES DE ESTADO DISCRETOS (CERO LUCES DE NEÓN)
 // --------------------------------------------------------------------------
-.fym-pill-status {
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
+.fym-status-pill {
+  font-size: 0.68rem;
+  font-weight: 600;
   text-transform: uppercase;
-  padding: 3px 10px;
-  border-radius: 9999px;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 4px;
   display: inline-block;
 
-  &.status-review {
-    background: #FDF2F4;
-    color: #D9536F;
-    border: 1px solid rgba(217, 83, 111, 0.2);
+  &.status-pending {
+    background: var(--fym-honey-light, #FBF6EE);
+    color: var(--fym-honey, #966A2B);
+    border: 1px solid rgba(150, 106, 43, 0.2);
   }
-  &.status-active {
-    background: #FBF4E8;
-    color: #B45309;
-    border: 1px solid rgba(196, 142, 68, 0.25);
-  }
-  &.status-done {
-    background: #EEF5F0;
-    color: #2F4C37;
-    border: 1px solid rgba(77, 112, 88, 0.25);
-  }
-}
 
-@media (max-width: 980px) {
-  .fym-editorial-canvas {
-    grid-template-columns: 1fr;
+  &.status-negotiating {
+    background: #F4F4F5;
+    color: #52525B;
+    border: 1px solid #E4E4E7;
+  }
+
+  &.status-confirmed {
+    background: var(--fym-sage-light, #EDF3EF);
+    color: var(--fym-sage, #3F5E4D);
+    border: 1px solid rgba(63, 94, 77, 0.2);
+  }
+
+  &.status-crafting {
+    background: var(--fym-rose-light, #F7EDEF);
+    color: var(--fym-rose-primary, #C25E73);
+    border: 1px solid rgba(194, 94, 115, 0.2);
+  }
+
+  &.status-completed {
+    background: #F0FDF4;
+    color: #15803D;
+    border: 1px solid #DCFCE7;
   }
 }
