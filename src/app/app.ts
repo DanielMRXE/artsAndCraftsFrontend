@@ -1,4 +1,4 @@
-﻿import { Component, inject } from '@angular/core';
+﻿import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './core/services/auth.service';
@@ -15,4 +15,14 @@ export class App {
   readonly auth = inject(AuthService);
   readonly assets = FYM_ASSETS;
   readonly contact = FYM_CONTACT_INFO;
+
+  readonly isMobileMenuOpen = signal<boolean>(false);
+
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen.update(v => !v);
+  }
+
+  closeMobileMenu(): void {
+    this.isMobileMenuOpen.set(false);
+  }
 }
