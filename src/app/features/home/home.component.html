@@ -188,3 +188,89 @@
 
   </div>
 </section>
+
+<!-- SECCIÓN EDITORIAL: SOBRE NOSOTROS & ATELIER ARTESANAL -->
+<section class="fym-about-section" id="sobre-nosotros">
+  <div class="fym-about-container">
+    
+    <div class="fym-about-grid">
+      <div class="fym-about-content">
+        <span class="fym-badge-pill fym-badge-custom">Atelier Flor & Más</span>
+        <h2 class="fym-display">Creaciones con Alma Hechas a Mano</h2>
+        
+        <p class="fym-about-lead">
+          En Flor y Más fusionamos el arte tradicional de la piñatería, las flores eternas en satén y limpiapipas, 
+          y los detalles decorativos para transformar ocasiones memorables en piezas tangibles y duraderas.
+        </p>
+
+        <p class="fym-about-desc">
+          Cada pedido es elaborado cuidadosamente bajo demanda en nuestro taller matriz, respetando tus dimensiones, 
+          paleta de colores y detalles únicos. Atendemos entregas locales en Somoto, Madriz y realizamos envíos seguros 
+          a todos los departamentos de Nicaragua.
+        </p>
+
+        <div class="fym-about-highlights">
+          <div class="highlight-item">
+            <span class="highlight-num">100%</span>
+            <span class="highlight-label">Hecho a mano</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-num">+6</span>
+            <span class="highlight-label">Líneas artesanales</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-num">Nac.</span>
+            <span class="highlight-label">Envíos a todo el país</span>
+          </div>
+        </div>
+
+        <div class="fym-about-contact-card">
+          <div class="contact-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div class="contact-card-info">
+            <strong>Ubicación del Atelier:</strong>
+            <span>{{ contact.ADDRESS_LINE }}</span>
+            <span class="coords-tag">Coordenadas: {{ contact.MAPS_COORDINATES }}</span>
+          </div>
+          <a [href]="contact.MAPS_DIRECT_LINK" target="_blank" rel="noopener" class="btn-maps-link">
+            <span>Abrir en Google Maps</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Mapa Interactivo Integrado -->
+      <div class="fym-about-map-wrap">
+        <div class="map-frame-header">
+          <div class="map-dot-group">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <span class="map-title-bar">Atelier Somoto &bull; {{ contact.MAPS_COORDINATES }}</span>
+        </div>
+        <div class="map-embed-container">
+          <iframe 
+            [src]="safeMapsUrl" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación del Atelier Flor y Más en Google Maps">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,8 +1,10 @@
 ﻿import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ApiService } from '../../core/services/api.service';
 import { Category, Product } from '../../core/models/catalog.models';
+import { FYM_CONTACT_INFO } from '../../core/constants/app.constants';
 
 export interface StageProduct {
   id: string;
@@ -26,6 +28,9 @@ export interface StageProduct {
 })
 export class HomeComponent implements OnInit {
   private readonly apiService = inject(ApiService);
+  private readonly sanitizer = inject(DomSanitizer);
+  readonly contact = FYM_CONTACT_INFO;
+  readonly safeMapsUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(FYM_CONTACT_INFO.MAPS_EMBED_URL);
 
   categories = signal<Category[]>([]);
   featuredProducts = signal<Product[]>([]);

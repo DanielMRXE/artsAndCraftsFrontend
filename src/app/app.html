@@ -23,6 +23,7 @@
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="fym-capsule-item">Inicio</a>
       <a routerLink="/catalogo" routerLinkActive="active" class="fym-capsule-item">Shop</a>
       <a routerLink="/pedidos" routerLinkActive="active" class="fym-capsule-item">Mis Cotizaciones</a>
+      <a href="#sobre-nosotros" class="fym-capsule-item">Sobre Nosotros</a>
       <a href="#contacto" class="fym-capsule-item">Contacto</a>
     </nav>
 
@@ -117,6 +118,13 @@
             <polyline points="10 9 9 9 8 9"></polyline>
           </svg>
           <span>Mis Cotizaciones</span>
+        </a>
+        <a href="#sobre-nosotros" (click)="closeMobileMenu()" class="fym-mobile-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span>Sobre Nosotros & Atelier</span>
         </a>
         <a href="#contacto" (click)="closeMobileMenu()" class="fym-mobile-link">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

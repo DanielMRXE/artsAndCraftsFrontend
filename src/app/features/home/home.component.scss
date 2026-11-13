@@ -1,4 +1,6 @@
-﻿.fym-stage-section {
+﻿@use './home-about.scss' as *;
+
+.fym-stage-section {
   position: relative;
   min-height: 82vh;
   display: flex;
