@@ -9,9 +9,9 @@ import { FormsModule } from '@angular/forms';
   template: `
     <div class="fym-cash-grid">
       <aside class="fym-cash-form-card">
-        <span class="fym-badge-pill fym-badge-custom">Registro Inmediato</span>
+        <span class="fym-badge-pill fym-badge-custom">Registro Directo</span>
         <h3>Asentar Movimiento en Caja</h3>
-        <p>Registra abonos de clientes, cobros de saldo contra entrega o egresos de compras de materiales.</p>
+        <p>Registra ingresos de abonos (50%), saldos de entrega o gastos de compra de insumos.</p>
 
         <form (ngSubmit)="handleSubmit()" class="fym-cash-inputs">
           <div class="fym-segmented-control">
@@ -29,24 +29,28 @@ import { FormsModule } from '@angular/forms';
           </div>
 
           <div class="fym-field">
-            <label>Concepto / Detalle del Movimiento</label>
+            <label>Detalle / Concepto del Movimiento</label>
             <input type="text" [ngModel]="movDesc()" (ngModelChange)="movDesc.set($event)" name="desc" placeholder="Ej. Abono 50% Pedido #ORD-..." required />
           </div>
 
           <button type="submit" class="fym-btn-save-movement" [disabled]="movAmount() <= 0">
-            Registrar en Caja &rarr;
+            Registrar Movimiento &rarr;
           </button>
         </form>
       </aside>
 
       <section class="fym-cash-history-card">
-        <h3>Historial de Movimientos</h3>
+        <div class="history-card-header">
+          <h3>Historial de Arqueo y Caja</h3>
+          <span class="history-count">{{ movements().length }} movimientos registrados</span>
+        </div>
+
         <div class="fym-movements-stream">
           @for (m of movements(); track m.id) {
             <div class="fym-movement-item" [class.income]="m.type === 1" [class.expense]="m.type === 2">
               <div class="fym-mov-info">
                 <strong>{{ m.description }}</strong>
-                <span>{{ m.date | date:'short' }}</span>
+                <span>{{ m.date | date:'medium' }}</span>
               </div>
               <strong class="fym-mov-val">
                 {{ m.type === 1 ? '+' : '-' }} C$ {{ m.amount | number:'1.2-2' }}
@@ -60,96 +64,128 @@ import { FormsModule } from '@angular/forms';
   styles: [`
     .fym-cash-grid {
       display: grid;
-      grid-template-columns: 360px 1fr;
-      gap: 1.5rem;
+      grid-template-columns: 380px 1fr;
+      gap: 32px;
     }
     .fym-cash-form-card, .fym-cash-history-card {
       background: #FFFFFF;
-      border: 1px solid #F1D4DB;
-      border-radius: 12px;
-      padding: 1.5rem;
+      border: 1px solid rgba(217, 83, 111, 0.1);
+      border-radius: 20px;
+      padding: 28px 30px;
+      box-shadow: 0 12px 32px -4px rgba(217, 83, 111, 0.06);
     }
-    .fym-badge-pill {
-      font-size: 0.75rem;
-      font-weight: 700;
+    .history-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #FDF2F4;
+    }
+    .history-count {
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: #957A84;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      padding: 0.25rem 0.6rem;
+    }
+    .fym-badge-pill {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
       border-radius: 9999px;
       display: inline-block;
-      margin-bottom: 0.5rem;
+      margin-bottom: 8px;
     }
     .fym-badge-custom {
       background: #FDF2F4;
       color: #D9536F;
-      border: 1px solid #F1D4DB;
+      border: 1px solid rgba(217, 83, 111, 0.2);
     }
     h3 {
-      font-size: 1.25rem;
-      color: #1A0D12;
-      margin-bottom: 0.35rem;
+      font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #2A171D;
+      letter-spacing: -0.02em;
+      margin: 0 0 6px;
     }
     p {
       font-size: 0.85rem;
-      color: #6E535C;
-      margin-bottom: 1.25rem;
+      color: #654E56;
+      line-height: 1.4;
+      margin-bottom: 24px;
     }
     .fym-segmented-control {
       display: flex;
-      border: 1px solid #F1D4DB;
-      border-radius: 8px;
-      overflow: hidden;
-      margin-bottom: 1rem;
+      background: #FFF8F9;
+      border: 1px solid rgba(217, 83, 111, 0.14);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 18px;
       button {
         flex: 1;
-        padding: 0.5rem;
-        background: #FFF8F9;
+        padding: 9px;
+        background: transparent;
         border: none;
+        border-radius: 9px;
         font-size: 0.82rem;
-        font-weight: 600;
+        font-weight: 800;
         cursor: pointer;
-        color: #6E535C;
+        color: #654E56;
+        transition: all 0.2s;
         &.active {
-          background: #D9536F;
+          background: #2A171D;
           color: #FFFFFF;
+          box-shadow: 0 4px 12px rgba(42, 23, 29, 0.15);
         }
       }
     }
     .fym-field {
-      margin-bottom: 1rem;
+      margin-bottom: 18px;
       label {
         display: block;
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: #1A0D12;
-        margin-bottom: 0.3rem;
+        font-size: 0.74rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #2A171D;
+        margin-bottom: 6px;
       }
       input {
         width: 100%;
-        padding: 0.6rem 0.8rem;
-        border: 1px solid #F1D4DB;
-        border-radius: 6px;
-        font-size: 0.9rem;
+        padding: 10px 14px;
+        border: 1px solid rgba(217, 83, 111, 0.16);
+        border-radius: 10px;
+        font-size: 0.92rem;
+        font-weight: 600;
+        background: #FFFFFF;
         box-sizing: border-box;
+        transition: all 0.2s;
         &:focus {
           outline: none;
           border-color: #D9536F;
+          box-shadow: 0 0 0 3px rgba(217, 83, 111, 0.1);
         }
       }
     }
     .fym-btn-save-movement {
       width: 100%;
-      padding: 0.75rem;
-      background: #1A0D12;
+      padding: 12px;
+      background: #D9536F;
       color: #FFFFFF;
       border: none;
-      border-radius: 8px;
-      font-weight: 600;
+      border-radius: 10px;
+      font-weight: 800;
       font-size: 0.88rem;
       cursor: pointer;
-      transition: background 0.2s;
+      box-shadow: 0 4px 14px rgba(217, 83, 111, 0.25);
+      transition: all 0.2s;
       &:hover:not(:disabled) {
-        background: #D9536F;
+        background: #B93753;
+        transform: translateY(-1px);
       }
       &:disabled {
         opacity: 0.5;
@@ -159,8 +195,7 @@ import { FormsModule } from '@angular/forms';
     .fym-movements-stream {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
-      margin-top: 1rem;
+      gap: 12px;
       max-height: 480px;
       overflow-y: auto;
     }
@@ -168,34 +203,43 @@ import { FormsModule } from '@angular/forms';
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.75rem 1rem;
+      padding: 14px 18px;
       background: #FFF8F9;
-      border: 1px solid #F1D4DB;
-      border-radius: 8px;
+      border: 1px solid rgba(217, 83, 111, 0.1);
+      border-radius: 12px;
+      transition: all 0.2s;
+      &:hover {
+        background: #FFFFFF;
+        box-shadow: 0 4px 14px rgba(217, 83, 111, 0.08);
+      }
       &.income .fym-mov-val {
-        color: #2D6A4F;
+        color: #4D7058;
       }
       &.expense .fym-mov-val {
-        color: #C1121F;
+        color: #D9536F;
       }
     }
     .fym-mov-info {
       display: flex;
       flex-direction: column;
+      gap: 2px;
       strong {
-        font-size: 0.88rem;
-        color: #1A0D12;
+        font-size: 0.92rem;
+        color: #2A171D;
+        font-weight: 700;
       }
       span {
-        font-size: 0.75rem;
-        color: #6E535C;
+        font-size: 0.74rem;
+        color: #957A84;
+        font-weight: 600;
       }
     }
     .fym-mov-val {
-      font-size: 0.95rem;
-      font-weight: 700;
+      font-family: 'Syne', monospace;
+      font-size: 1.05rem;
+      font-weight: 800;
     }
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
       .fym-cash-grid {
         grid-template-columns: 1fr;
       }
