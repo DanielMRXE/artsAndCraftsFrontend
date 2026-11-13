@@ -50,7 +50,7 @@
       </div>
     }
 
-    <form (ngSubmit)="submitAuth()" class="fym-auth-form">
+    <form (ngSubmit)="submitAuth()" class="fym-auth-form" autocomplete="off">
 
       <!-- Nombre y Apellidos Separados (Solo en Registro) -->
       @if (isRegisterMode()) {
@@ -119,7 +119,7 @@
             name="phoneNumber" 
             [placeholder]="selectedCountry().placeholder" 
             required 
-            autocomplete="tel-national" 
+            autocomplete="off" 
             class="fym-phone-input" />
         </div>
       </div>
@@ -139,7 +139,7 @@
           name="authPassword" 
           placeholder="••••••••" 
           required 
-          autocomplete="current-password" 
+          autocomplete="new-password" 
           class="fym-text-input" />
       </div>
 
