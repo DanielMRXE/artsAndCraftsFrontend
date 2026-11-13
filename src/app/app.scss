@@ -130,6 +130,52 @@
   }
 }
 
+.fym-nav-cart-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--fym-radius-pill);
+  background: rgba(255, 248, 249, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(217, 83, 111, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--fym-ink);
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(42, 23, 29, 0.04);
+
+  svg {
+    color: var(--fym-rose-primary);
+  }
+
+  &:hover {
+    border-color: var(--fym-rose-primary);
+    transform: translateY(-1px);
+    background: #FFF1F2;
+  }
+
+  .fym-cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: var(--fym-rose-primary);
+    color: #FFFFFF;
+    font-size: 0.68rem;
+    font-weight: 800;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    box-shadow: 0 2px 6px rgba(217, 83, 111, 0.4);
+    animation: scaleIn 0.2s ease;
+  }
+}
+
 .fym-user-profile-badge {
   display: inline-flex;
   align-items: center;

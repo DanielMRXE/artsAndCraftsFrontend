@@ -379,6 +379,34 @@
         .fym-price-label { font-size: 0.68rem; color: var(--fym-ink-muted); text-transform: uppercase; font-weight: 700; }
         .fym-price-val { font-size: 1.15rem; font-weight: 900; color: var(--fym-ink); }
       }
+      .fym-card-actions-group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .fym-card-btn-add-cart {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 14px;
+        background: #FFF1F2;
+        color: var(--fym-rose-primary);
+        border: 1px solid rgba(217, 83, 111, 0.25);
+        border-radius: var(--fym-radius-pill);
+        font-size: 0.8rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        svg { stroke: var(--fym-rose-primary); }
+
+        &:hover {
+          background: var(--fym-rose-primary);
+          color: #FFFFFF;
+          svg { stroke: #FFFFFF; }
+          transform: translateY(-1px);
+        }
+      }
       .fym-card-action-btn {
         display: inline-flex;
         align-items: center;

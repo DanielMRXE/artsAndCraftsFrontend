@@ -1,0 +1,310 @@
+.fym-cart-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(42, 23, 29, 0.45);
+  backdrop-filter: blur(4px);
+  z-index: 10005;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+
+  &.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.fym-cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 92%;
+  max-width: 440px;
+  background: #FFFFFF;
+  z-index: 10006;
+  box-shadow: -12px 0 40px rgba(42, 23, 29, 0.15);
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+
+  &.open {
+    transform: translateX(0);
+  }
+}
+
+.fym-cart-drawer-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.fym-cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 28px;
+  border-bottom: 1px solid rgba(217, 83, 111, 0.12);
+  background: #FFF8F9;
+
+  .meta-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--fym-rose-primary, #D9536F);
+  }
+
+  .fym-cart-title {
+    font-family: var(--fym-font-display, 'Syne', sans-serif);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--fym-ink, #2A171D);
+    margin: 2px 0 0;
+  }
+
+  .btn-close-cart {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(217, 83, 111, 0.15);
+    background: #FFFFFF;
+    color: var(--fym-ink, #2A171D);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: #FFF1F2;
+      color: var(--fym-rose-primary, #D9536F);
+    }
+  }
+}
+
+.fym-cart-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 32px;
+  text-align: center;
+
+  .empty-icon-wrap {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #FFF1F2;
+    color: var(--fym-rose-primary, #D9536F);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+
+  h4 {
+    font-family: var(--fym-font-display, 'Syne', sans-serif);
+    font-size: 1.2rem;
+    color: var(--fym-ink, #2A171D);
+    margin: 0 0 8px;
+  }
+
+  p {
+    font-size: 0.88rem;
+    color: var(--fym-ink-muted, #957A84);
+    line-height: 1.5;
+    margin: 0 0 24px;
+    max-width: 280px;
+  }
+
+  .btn-explore {
+    padding: 10px 22px;
+    border-radius: var(--fym-radius-pill, 9999px);
+    background: var(--fym-rose-primary, #D9536F);
+    color: #FFFFFF;
+    border: none;
+    font-size: 0.86rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: var(--fym-rose-dark, #B93753);
+    }
+  }
+}
+
+.fym-cart-items-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fym-cart-item {
+  display: flex;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(217, 83, 111, 0.08);
+
+  .cart-item-img {
+    width: 76px;
+    height: 76px;
+    border-radius: 12px;
+    object-fit: cover;
+    background: #FFF1F2;
+    border: 1px solid rgba(217, 83, 111, 0.1);
+  }
+
+  .cart-item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .item-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+
+      .item-name {
+        font-weight: 700;
+        font-size: 0.92rem;
+        color: var(--fym-ink, #2A171D);
+      }
+
+      .btn-remove-item {
+        background: transparent;
+        border: none;
+        color: var(--fym-ink-muted, #957A84);
+        cursor: pointer;
+        padding: 2px;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: #BE123C;
+        }
+      }
+    }
+
+    .item-variant {
+      font-size: 0.78rem;
+      color: var(--fym-rose-primary, #D9536F);
+      font-weight: 600;
+    }
+
+    .item-dedication {
+      font-size: 0.75rem;
+      font-style: italic;
+      color: var(--fym-ink-muted, #957A84);
+    }
+
+    .item-pricing-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+
+      .quantity-stepper {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid rgba(217, 83, 111, 0.2);
+        border-radius: var(--fym-radius-pill, 9999px);
+        padding: 2px 6px;
+        background: #FFF8F9;
+
+        button {
+          background: transparent;
+          border: none;
+          width: 22px;
+          height: 22px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          font-weight: 700;
+          color: var(--fym-ink, #2A171D);
+
+          &:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+          }
+        }
+
+        .qty-num {
+          font-size: 0.82rem;
+          font-weight: 700;
+          padding: 0 8px;
+        }
+      }
+
+      .item-subtotal {
+        font-size: 0.92rem;
+        color: var(--fym-ink, #2A171D);
+        font-weight: 800;
+      }
+    }
+  }
+}
+
+.fym-cart-footer {
+  padding: 24px;
+  background: #FFF8F9;
+  border-top: 1px solid rgba(217, 83, 111, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .cart-summary-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--fym-ink-secondary, #654E56);
+    }
+
+    .amount {
+      font-family: var(--fym-font-display, 'Syne', sans-serif);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--fym-rose-primary, #D9536F);
+    }
+  }
+
+  .summary-note {
+    font-size: 0.76rem;
+    color: var(--fym-ink-muted, #957A84);
+    margin: 0;
+  }
+
+  .btn-checkout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px 20px;
+    background: var(--fym-rose-primary, #D9536F);
+    color: #FFFFFF;
+    border-radius: var(--fym-radius-pill, 9999px);
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(217, 83, 111, 0.3);
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: var(--fym-rose-dark, #B93753);
+      transform: translateY(-1px);
+    }
+  }
+}

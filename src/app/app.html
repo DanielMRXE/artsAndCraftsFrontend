@@ -27,8 +27,21 @@
       <a href="#contacto" class="fym-capsule-item">Contacto</a>
     </nav>
 
-    <!-- Derecha: Acciones y Hamburguesa Móvil -->
+    <!-- Derecha: Acciones, Carrito y Hamburguesa Móvil -->
     <div class="fym-nav-right">
+      
+      <!-- Botón Carrito / Bolsa Flotante -->
+      <button type="button" class="fym-nav-cart-btn" (click)="cartService.toggleDrawer()" aria-label="Ver bolsa de compras">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        @if (cartService.totalItems() > 0) {
+          <span class="fym-cart-badge">{{ cartService.totalItems() }}</span>
+        }
+      </button>
+
       @if (auth.isAuthenticated()) {
         <div class="fym-user-profile-badge">
           <img [src]="auth.currentUser()?.avatarUrl" alt="Avatar" class="fym-user-avatar" />
@@ -212,3 +225,6 @@
     <a routerLink="/seller" class="fym-staff-link">Acceso Tallerista &bull; Mesa Operativa</a>
   </div>
 </footer>
+
+<!-- Cajón Flotante del Carrito -->
+<app-cart-drawer></app-cart-drawer>

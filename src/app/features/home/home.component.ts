@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ApiService } from '../../core/services/api.service';
+import { CartService } from '../../core/services/cart.service';
 import { Category, Product } from '../../core/models/catalog.models';
 import { FYM_CONTACT_INFO } from '../../core/constants/app.constants';
 
@@ -28,6 +29,7 @@ export interface StageProduct {
 })
 export class HomeComponent implements OnInit {
   private readonly apiService = inject(ApiService);
+  readonly cartService = inject(CartService);
   private readonly sanitizer = inject(DomSanitizer);
   readonly contact = FYM_CONTACT_INFO;
   readonly safeMapsUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(FYM_CONTACT_INFO.MAPS_EMBED_URL);
