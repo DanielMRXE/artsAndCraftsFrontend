@@ -1,133 +1,174 @@
-// ==========================================
-// SELLER PANEL - STYLES (Cards & Stream)
-// ==========================================
+// ==========================================================================
+// FLOR Y MÁS - SELLER PANEL: TIMELINE & CARDS (EDITORIAL TACTILE)
+// Anti-CRUD • Zero Emojis • Elevación 3D • Tipografía Syne/Plus Jakarta
+// ==========================================================================
 
-.fym-subfilter-bar {
+.fym-filter-strip {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 18px;
+  gap: 12px;
+  margin-bottom: 24px;
   flex-wrap: wrap;
 
-  span {
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: #1A0D12;
+  .filter-heading {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #957A84;
   }
 
-  .fym-pill-filter {
-    padding: 6px 14px;
+  .fym-filter-pill {
+    padding: 7px 16px;
     border-radius: 9999px;
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.82rem;
+    font-weight: 700;
     background: #FFFFFF;
-    border: 1px solid #F1D4DB;
-    color: #6E535C;
+    border: 1px solid rgba(217, 83, 111, 0.14);
+    color: #654E56;
     cursor: pointer;
-    transition: all 0.15s;
+    box-shadow: 0 2px 6px rgba(42, 23, 29, 0.02);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 
     &:hover {
       border-color: #D9536F;
       color: #D9536F;
+      transform: translateY(-1px);
     }
 
     &.active {
       background: #D9536F;
       color: #FFFFFF;
       border-color: #D9536F;
+      box-shadow: 0 4px 12px rgba(217, 83, 111, 0.25);
     }
   }
 }
 
-.fym-seller-master-detail {
+.fym-editorial-canvas {
   display: grid;
-  grid-template-columns: 360px 1fr;
-  gap: 24px;
+  grid-template-columns: 390px 1fr;
+  gap: 32px;
   align-items: start;
 }
 
-.fym-seller-cards-stream {
+// --------------------------------------------------------------------------
+// TIMELINE DE PEDIDOS (MASTER COLUMN)
+// --------------------------------------------------------------------------
+.fym-orders-timeline {
   background: #FFFFFF;
-  border-radius: 12px;
-  border: 1px solid #F1D4DB;
-  padding: 16px;
-  max-height: calc(100vh - 280px);
+  border-radius: 20px;
+  border: 1px solid rgba(217, 83, 111, 0.1);
+  padding: 24px;
+  box-shadow: 0 12px 32px -4px rgba(217, 83, 111, 0.06);
+  max-height: calc(100vh - 270px);
   overflow-y: auto;
 
-  .fym-stream-header {
+  .timeline-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
-    h3 { font-size: 1.05rem; font-weight: 700; color: #1A0D12; margin: 0; }
-    .fym-stream-hint { font-size: 0.75rem; color: #6E535C; }
+    align-items: baseline;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #FDF2F4;
+
+    h3 {
+      font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #2A171D;
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+
+    .timeline-hint {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #957A84;
+    }
   }
 
-  .fym-orders-stack {
+  .timeline-stream {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
   }
 
-  .fym-seller-order-card {
+  .timeline-card {
     background: #FFF8F9;
-    border: 1px solid #F1D4DB;
-    border-radius: 10px;
-    padding: 14px;
+    border: 1px solid rgba(217, 83, 111, 0.1);
+    border-radius: 14px;
+    padding: 18px 20px;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 
     &:hover {
-      border-color: #D9536F;
+      border-color: rgba(217, 83, 111, 0.4);
       background: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(217, 83, 111, 0.08);
     }
 
-    &.active {
+    &.selected {
       background: #FFFFFF;
       border-color: #D9536F;
-      box-shadow: 0 4px 12px rgba(217, 83, 111, 0.12);
+      box-shadow: 0 10px 28px rgba(217, 83, 111, 0.15);
+      border-left: 5px solid #D9536F;
     }
 
-    .fym-order-card-top {
+    .card-headline {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
 
-      .fym-order-id {
-        font-size: 0.78rem;
-        font-weight: 700;
-        color: #1A0D12;
+      .order-code {
+        font-family: 'Syne', monospace;
+        font-size: 0.82rem;
+        font-weight: 800;
+        color: #2A171D;
+        letter-spacing: 0.02em;
       }
     }
 
-    .fym-order-card-client {
-      font-size: 0.95rem;
-      font-weight: 700;
+    .card-client {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 800;
       color: #1A0D12;
-      margin: 0 0 4px;
+      margin: 0;
+      letter-spacing: -0.01em;
     }
 
-    .fym-order-card-detail {
-      font-size: 0.82rem;
-      color: #6E535C;
-      margin: 0 0 10px;
+    .card-craft {
+      font-size: 0.85rem;
+      color: #654E56;
+      margin: 0 0 8px;
+      line-height: 1.35;
     }
 
-    .fym-order-card-meta {
+    .card-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid #F6DFE5;
-      padding-top: 8px;
+      border-top: 1px solid rgba(217, 83, 111, 0.08);
+      padding-top: 10px;
+      margin-top: 2px;
 
-      .fym-delivery-target {
-        font-size: 0.75rem;
-        color: #6E535C;
+      .card-date {
+        font-size: 0.78rem;
+        color: #957A84;
+        font-weight: 600;
       }
 
-      .fym-order-card-total {
-        font-size: 0.95rem;
+      .card-price {
+        font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
+        font-size: 1.05rem;
         font-weight: 800;
         color: #D9536F;
       }
@@ -135,33 +176,37 @@
   }
 }
 
-// Badges de Estado
-.fym-badge-pill {
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 0.2rem 0.55rem;
+// --------------------------------------------------------------------------
+// STATUS PILLS (ESTÉTICA EDITORIAL)
+// --------------------------------------------------------------------------
+.fym-pill-status {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 3px 10px;
   border-radius: 9999px;
   display: inline-block;
 
-  &.status-pending {
+  &.status-review {
     background: #FDF2F4;
     color: #D9536F;
-    border: 1px solid #F1D4DB;
+    border: 1px solid rgba(217, 83, 111, 0.2);
   }
-  &.status-production {
-    background: #FEF3C7;
-    color: #92400E;
-    border: 1px solid #FDE68A;
+  &.status-active {
+    background: #FBF4E8;
+    color: #B45309;
+    border: 1px solid rgba(196, 142, 68, 0.25);
   }
-  &.status-completed {
-    background: #E8F5E9;
-    color: #2D6A4F;
-    border: 1px solid #C8E6C9;
+  &.status-done {
+    background: #EEF5F0;
+    color: #2F4C37;
+    border: 1px solid rgba(77, 112, 88, 0.25);
   }
 }
 
-@media (max-width: 960px) {
-  .fym-seller-master-detail {
+@media (max-width: 980px) {
+  .fym-editorial-canvas {
     grid-template-columns: 1fr;
   }
 }

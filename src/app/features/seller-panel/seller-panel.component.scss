@@ -1,165 +1,209 @@
 ﻿@use './seller-panel-drawer.scss' as *;
 @use './seller-panel-cards.scss' as *;
 
-.fym-seller-viewport {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 20px 24px 80px;
+// ==========================================================================
+// FLOR Y MÁS - SELLER PANEL: WARM EDITORIAL MINIMALISM
+// Zero Emojis • Espaciado Orgánico • Tipografía de Impacto • Sombras Suaves
+// ==========================================================================
 
-  .fym-dashboard-banner {
-    width: 100%;
-    margin-bottom: 24px;
-    border-radius: 12px;
-    overflow: hidden;
-    max-height: 180px;
-    border: 1px solid #F1D4DB;
-    .fym-banner-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+.fym-seller-viewport {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 32px 32px 100px;
+  background: #FFF8F9;
+  min-height: 100vh;
+}
+
+// --------------------------------------------------------------------------
+// TOPBAR MINIMALISTA & FLOTANTE
+// --------------------------------------------------------------------------
+.fym-seller-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  .fym-topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .fym-btn-kebab {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: #FFFFFF;
+    border: 1px solid rgba(217, 83, 111, 0.12);
+    color: #2A171D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(42, 23, 29, 0.04);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover {
+      background: #FDF2F4;
+      border-color: #D9536F;
+      color: #D9536F;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(217, 83, 111, 0.12);
+    }
+
+    .kebab-icon {
+      width: 22px;
+      height: 22px;
     }
   }
 
-  .fym-seller-topbar {
+  .fym-brand-badge {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 2px;
+
+    .fym-badge-meta {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #D9536F;
+    }
+
+    .fym-title-atelier {
+      font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #2A171D;
+      letter-spacing: -0.03em;
+      margin: 0;
+      line-height: 1.1;
+    }
+  }
+
+  // Cápsula flotante estilo Velvetspoon
+  .fym-segmented-capsule {
+    display: flex;
     align-items: center;
-    margin-bottom: 24px;
-    flex-wrap: wrap;
-    gap: 16px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(217, 83, 111, 0.14);
+    padding: 6px;
+    border-radius: 9999px;
+    box-shadow: 0 10px 30px -4px rgba(42, 23, 29, 0.05);
 
-    .fym-topbar-left {
+    button {
       display: flex;
       align-items: center;
-      gap: 16px;
-    }
-
-    .fym-btn-kebab {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      background: #FFFFFF;
-      border: 1px solid #F1D4DB;
-      color: #1A0D12;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 6px rgba(26, 13, 18, 0.04);
-
-      &:hover {
-        background: #FDF2F4;
-        border-color: #D9536F;
-        color: #D9536F;
-        transform: translateY(-1px);
-      }
-
-      .kebab-icon {
-        width: 20px;
-        height: 20px;
-      }
-    }
-
-    .fym-topbar-title {
-      h1 {
-        font-size: 1.85rem;
-        font-weight: 800;
-        color: #1A0D12;
-        margin: 4px 0 0;
-      }
-    }
-
-    .fym-seller-nav-tabs {
-      display: flex;
-      background: #FFF8F9;
-      border: 1px solid #F1D4DB;
-      padding: 4px;
+      gap: 8px;
+      padding: 10px 22px;
       border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #654E56;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.22s ease;
 
-      button {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 18px;
+      .capsule-counter {
+        background: rgba(217, 83, 111, 0.12);
+        color: #D9536F;
+        font-size: 0.7rem;
+        font-weight: 800;
+        padding: 2px 7px;
         border-radius: 9999px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: #6E535C;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        transition: all 0.2s ease;
+      }
 
-        .fym-tab-badge {
+      &:hover:not(.active) {
+        color: #2A171D;
+        background: rgba(217, 83, 111, 0.04);
+      }
+
+      &.active {
+        background: #2A171D;
+        color: #FFFFFF;
+        box-shadow: 0 4px 14px rgba(42, 23, 29, 0.18);
+
+        .capsule-counter {
           background: #D9536F;
           color: #FFFFFF;
-          font-size: 0.7rem;
-          font-weight: 700;
-          padding: 2px 7px;
-          border-radius: 9999px;
-        }
-
-        &.active {
-          background: #FFFFFF;
-          color: #1A0D12;
-          box-shadow: 0 2px 6px rgba(26, 13, 18, 0.08);
         }
       }
     }
   }
 }
 
-// ------------------------------------------
-// KPIS RESUMEN
-// ------------------------------------------
-.fym-kpis-strip {
+// --------------------------------------------------------------------------
+// STRIP DE MÉTRICAS EDITORIALES (SIN BORDES DUROS, CON ELEVACIÓN ORGÁNICA)
+// --------------------------------------------------------------------------
+.fym-editorial-metrics {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  margin-bottom: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 36px;
 
-  .fym-kpi-card {
+  .metric-cell {
     background: #FFFFFF;
-    border-radius: 12px;
-    padding: 18px 20px;
-    border: 1px solid #F1D4DB;
-    box-shadow: 0 2px 8px rgba(26, 13, 18, 0.04);
+    border-radius: 16px;
+    padding: 24px 28px;
+    border: 1px solid rgba(217, 83, 111, 0.08);
+    box-shadow: 0 12px 32px -4px rgba(217, 83, 111, 0.06), 0 4px 12px -2px rgba(42, 23, 29, 0.02);
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
     cursor: pointer;
-    transition: transform 0.15s ease, border-color 0.15s ease;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 
     &:hover {
-      transform: translateY(-2px);
-      border-color: #D9536F;
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px -8px rgba(217, 83, 111, 0.14);
+      border-color: rgba(217, 83, 111, 0.22);
     }
 
-    .fym-kpi-sub {
+    .metric-meta {
       font-size: 0.75rem;
       text-transform: uppercase;
-      font-weight: 700;
-      color: #6E535C;
-      letter-spacing: 0.04em;
+      font-weight: 800;
+      color: #957A84;
+      letter-spacing: 0.06em;
     }
 
-    .fym-kpi-num {
-      font-size: 2rem;
+    .metric-value {
+      font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
+      font-size: 2.4rem;
       font-weight: 800;
-      line-height: 1.1;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
       margin: 4px 0;
 
-      &.fym-terracotta { color: #D9536F; }
-      &.fym-honey { color: #B45309; }
-      &.fym-sage { color: #2D6A4F; }
-      &.fym-cacao { color: #1A0D12; }
+      &.text-terracotta { color: #D9536F; }
+      &.text-honey { color: #C48E44; }
+      &.text-sage { color: #4D7058; }
+      &.text-cacao { color: #2A171D; }
     }
 
-    .fym-kpi-desc {
-      font-size: 0.8rem;
-      color: #6E535C;
+    .metric-caption {
+      font-size: 0.82rem;
+      color: #654E56;
+      font-weight: 500;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .fym-seller-viewport {
+    padding: 20px 16px 80px;
+  }
+  .fym-seller-topbar {
+    flex-direction: column;
+    align-items: stretch;
+    .fym-segmented-capsule {
+      overflow-x: auto;
+      justify-content: flex-start;
+      border-radius: 12px;
     }
   }
 }

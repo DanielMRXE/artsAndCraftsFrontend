@@ -1,15 +1,9 @@
 ﻿<div class="fym-seller-viewport">
-  
-  @if (assets.DASHBOARD_BANNER) {
-    <div class="fym-dashboard-banner">
-      <img [src]="assets.DASHBOARD_BANNER" alt="Banner Taller" class="fym-banner-img" />
-    </div>
-  }
 
-  <!-- BARRA SUPERIOR OPERATIVA CON BOTÓN DE 3 PUNTOS Y TABS -->
+  <!-- TOPBAR MINIMALISTA & FLOTANTE (ESTILO VELVETSPOON) -->
   <header class="fym-seller-topbar">
     <div class="fym-topbar-left">
-      <button type="button" class="fym-btn-kebab" (click)="toggleSidebar()" aria-label="Abrir menú de administración" title="Opciones de administración">
+      <button type="button" class="fym-btn-kebab" (click)="toggleSidebar()" aria-label="Abrir navegación de administración" title="Menú operativo">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="kebab-icon">
           <circle cx="12" cy="5" r="1.5"></circle>
           <circle cx="12" cy="12" r="1.5"></circle>
@@ -17,30 +11,31 @@
         </svg>
       </button>
 
-      <div class="fym-topbar-title">
-        <span class="fym-badge-pill fym-badge-custom">Taller & Operaciones</span>
-        <h1 class="fym-display">Panel Maestro del Taller</h1>
+      <div class="fym-brand-badge">
+        <span class="fym-badge-meta">Atelier Flor & Más</span>
+        <h1 class="fym-title-atelier">Mesa de Trabajo</h1>
       </div>
     </div>
 
-    <nav class="fym-seller-nav-tabs">
-      <button [class.active]="activeTab() === 'tablero'" (click)="activeTab.set('tablero')">
-        Tablero de Producción
-        <span class="fym-tab-badge">{{ totalInProcessOrders() }}</span>
+    <!-- Píldoras de Navegación Segmentada Flotante -->
+    <nav class="fym-segmented-capsule" role="tablist">
+      <button role="tab" [class.active]="activeTab() === 'tablero'" (click)="activeTab.set('tablero')">
+        <span>Producción</span>
+        <span class="capsule-counter">{{ totalInProcessOrders() }}</span>
       </button>
-      <button [class.active]="activeTab() === 'nuevo-producto'" (click)="activeTab.set('nuevo-producto')">
-        + Publicar Producto (CDN WebP)
+      <button role="tab" [class.active]="activeTab() === 'nuevo-producto'" (click)="activeTab.set('nuevo-producto')">
+        <span>+ Publicar</span>
       </button>
-      <button [class.active]="activeTab() === 'caja'" (click)="activeTab.set('caja')">
-        Caja Diaria & Flujo
+      <button role="tab" [class.active]="activeTab() === 'caja'" (click)="activeTab.set('caja')">
+        <span>Caja & Flujo</span>
       </button>
-      <button [class.active]="activeTab() === 'inventario'" (click)="activeTab.set('inventario')">
-        Materia Prima
+      <button role="tab" [class.active]="activeTab() === 'inventario'" (click)="activeTab.set('inventario')">
+        <span>Insumos</span>
       </button>
     </nav>
   </header>
 
-  <!-- DRAWER / MENÚ LATERAL DESLIZANTE MINIMALISTA -->
+  <!-- DRAWER LATERAL MINIMALISTA -->
   @if (isSidebarOpen()) {
     <div class="fym-drawer-backdrop" (click)="closeSidebar()"></div>
   }
@@ -56,7 +51,7 @@
         </div>
         <div>
           <h3 class="drawer-user-name">{{ authService.currentUser()?.fullName || 'Daniel Escobar' }}</h3>
-          <span class="drawer-user-role">Administrador de Taller</span>
+          <span class="drawer-user-role">Administración & Taller</span>
         </div>
       </div>
       <button type="button" class="btn-close-drawer" (click)="closeSidebar()" aria-label="Cerrar menú">
@@ -68,15 +63,16 @@
     </div>
 
     <div class="fym-drawer-body">
-      <!-- Sección: Pedidos de Clientes Segmentados -->
+      <!-- Sección: Flujo de Pedidos -->
       <div class="drawer-section">
-        <span class="drawer-section-title">Gestión de Pedidos</span>
+        <span class="drawer-section-title">Flujo de Pedidos</span>
+        
         <button type="button" class="drawer-nav-item" [class.active]="activeTab() === 'tablero' && ordersFilter() === 'pendientes'" (click)="navigateTab('tablero', 'pendientes')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="fym-svg-icon">
             <circle cx="12" cy="12" r="10"></circle>
             <polyline points="12 6 12 12 16 14"></polyline>
           </svg>
-          <span class="nav-label">Pendientes a Respuesta</span>
+          <span class="nav-label">Por Responder / Trato</span>
           <span class="nav-counter badge-pending">{{ totalPendingOrders() }}</span>
         </button>
 
@@ -84,7 +80,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="fym-svg-icon">
             <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
           </svg>
-          <span class="nav-label">En Proceso (Anticipo 50%)</span>
+          <span class="nav-label">En Confección (50%)</span>
           <span class="nav-counter badge-process">{{ totalInProcessOrders() }}</span>
         </button>
 
@@ -93,7 +89,7 @@
             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
             <polyline points="22 4 12 14.01 9 11.01"></polyline>
           </svg>
-          <span class="nav-label">Completados / Entregados</span>
+          <span class="nav-label">Entregados / Listos</span>
           <span class="nav-counter badge-done">{{ totalCompletedOrders() }}</span>
         </button>
 
@@ -104,7 +100,7 @@
             <rect x="14" y="14" width="7" height="7"></rect>
             <rect x="3" y="14" width="7" height="7"></rect>
           </svg>
-          <span class="nav-label">Todos los Pedidos</span>
+          <span class="nav-label">Archivo Cronológico</span>
           <span class="nav-counter">{{ orders().length }}</span>
         </button>
       </div>
@@ -118,7 +114,7 @@
             <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
             <line x1="12" y1="22.08" x2="12" y2="12"></line>
           </svg>
-          <span class="nav-label">Inventario & Materia Prima</span>
+          <span class="nav-label">Materia Prima & Almacén</span>
         </button>
 
         <button type="button" class="drawer-nav-item" [class.active]="activeTab() === 'caja'" (click)="navigateTab('caja')">
@@ -126,7 +122,7 @@
             <rect x="2" y="5" width="20" height="14" rx="2"></rect>
             <line x1="2" y1="10" x2="22" y2="10"></line>
           </svg>
-          <span class="nav-label">Reportes & Caja Diaria</span>
+          <span class="nav-label">Caja Diaria & Reportes</span>
         </button>
 
         <button type="button" class="drawer-nav-item" [class.active]="activeTab() === 'nuevo-producto'" (click)="navigateTab('nuevo-producto')">
@@ -134,7 +130,7 @@
             <line x1="12" y1="5" x2="12" y2="19"></line>
             <line x1="5" y1="12" x2="19" y2="12"></line>
           </svg>
-          <span class="nav-label">Publicar Producto (CDN WebP)</span>
+          <span class="nav-label">Publicar en Catálogo WebP</span>
         </button>
       </div>
     </div>
@@ -152,76 +148,79 @@
     </div>
   </aside>
 
-  <!-- TARJETAS KPI RESUMEN SUPERIOR -->
-  <section class="fym-kpis-strip">
-    <div class="fym-kpi-card" (click)="ordersFilter.set('pendientes'); activeTab.set('tablero')">
-      <span class="fym-kpi-sub">Por Responder / Pendientes</span>
-      <strong class="fym-kpi-num fym-terracotta">{{ totalPendingOrders() }}</strong>
-      <span class="fym-kpi-desc">Requieren oferta o respuesta</span>
+  <!-- STRIP DE MÉTRICAS EDITORIALES (SIN BORDES DUROS, CON ELEVACIÓN ORGÁNICA) -->
+  <section class="fym-editorial-metrics">
+    <div class="metric-cell" (click)="ordersFilter.set('pendientes'); activeTab.set('tablero')">
+      <span class="metric-meta">Pendientes de Trato</span>
+      <strong class="metric-value text-terracotta">{{ totalPendingOrders() }}</strong>
+      <span class="metric-caption">Por acordar precio o tiempo</span>
     </div>
-    <div class="fym-kpi-card" (click)="ordersFilter.set('proceso'); activeTab.set('tablero')">
-      <span class="fym-kpi-sub">En Proceso / Confección</span>
-      <strong class="fym-kpi-num fym-honey">{{ totalInProcessOrders() }}</strong>
-      <span class="fym-kpi-desc">Anticipo 50% verificado</span>
+
+    <div class="metric-cell" (click)="ordersFilter.set('proceso'); activeTab.set('tablero')">
+      <span class="metric-meta">En Taller Activo</span>
+      <strong class="metric-value text-honey">{{ totalInProcessOrders() }}</strong>
+      <span class="metric-caption">Con anticipo 50% confirmado</span>
     </div>
-    <div class="fym-kpi-card" (click)="ordersFilter.set('completados'); activeTab.set('tablero')">
-      <span class="fym-kpi-sub">Completados / Entregados</span>
-      <strong class="fym-kpi-num fym-sage">{{ totalCompletedOrders() }}</strong>
-      <span class="fym-kpi-desc">Listos o entregados a cliente</span>
+
+    <div class="metric-cell" (click)="ordersFilter.set('completados'); activeTab.set('tablero')">
+      <span class="metric-meta">Concluidos</span>
+      <strong class="metric-value text-sage">{{ totalCompletedOrders() }}</strong>
+      <span class="metric-caption">Listos o entregados a cliente</span>
     </div>
-    <div class="fym-kpi-card" (click)="activeTab.set('caja')">
-      <span class="fym-kpi-sub">Saldo en Caja Taller</span>
-      <strong class="fym-kpi-num fym-cacao">C$ {{ cashSummary()?.currentBalance | number:'1.2-2' }}</strong>
-      <span class="fym-kpi-desc">Ingresos C$ {{ cashSummary()?.totalIncome | number:'1.2-2' }}</span>
+
+    <div class="metric-cell" (click)="activeTab.set('caja')">
+      <span class="metric-meta">Caja Disponible</span>
+      <strong class="metric-value text-cacao">C$ {{ cashSummary()?.currentBalance | number:'1.2-2' }}</strong>
+      <span class="metric-caption">Ingresos C$ {{ cashSummary()?.totalIncome | number:'1.2-2' }}</span>
     </div>
   </section>
 
   <!-- TAB 1: TABLERO CRONOLÓGICO DE PRODUCCIÓN (MASTER-DETAIL) -->
   @if (activeTab() === 'tablero') {
-    <div class="fym-subfilter-bar">
-      <span>Filtrar pedidos:</span>
-      <button class="fym-pill-filter" [class.active]="ordersFilter() === 'todos'" (click)="ordersFilter.set('todos')">Todos ({{ orders().length }})</button>
-      <button class="fym-pill-filter" [class.active]="ordersFilter() === 'pendientes'" (click)="ordersFilter.set('pendientes')">Pendientes ({{ totalPendingOrders() }})</button>
-      <button class="fym-pill-filter" [class.active]="ordersFilter() === 'proceso'" (click)="ordersFilter.set('proceso')">En Proceso ({{ totalInProcessOrders() }})</button>
-      <button class="fym-pill-filter" [class.active]="ordersFilter() === 'completados'" (click)="ordersFilter.set('completados')">Completados ({{ totalCompletedOrders() }})</button>
+    <div class="fym-filter-strip">
+      <span class="filter-heading">Filtrar por flujo:</span>
+      <button class="fym-filter-pill" [class.active]="ordersFilter() === 'todos'" (click)="ordersFilter.set('todos')">Todos ({{ orders().length }})</button>
+      <button class="fym-filter-pill" [class.active]="ordersFilter() === 'pendientes'" (click)="ordersFilter.set('pendientes')">Por Responder ({{ totalPendingOrders() }})</button>
+      <button class="fym-filter-pill" [class.active]="ordersFilter() === 'proceso'" (click)="ordersFilter.set('proceso')">En Producción ({{ totalInProcessOrders() }})</button>
+      <button class="fym-filter-pill" [class.active]="ordersFilter() === 'completados'" (click)="ordersFilter.set('completados')">Completados ({{ totalCompletedOrders() }})</button>
     </div>
 
-    <div class="fym-seller-master-detail">
+    <div class="fym-editorial-canvas">
       
-      <!-- Columna Master: Tarjetas Cronológicas por Fecha de Entrega -->
-      <aside class="fym-seller-cards-stream">
-        <div class="fym-stream-header">
-          <h3>Órdenes en Taller</h3>
-          <span class="fym-stream-hint">Por tiempo de entrega</span>
+      <!-- Columna Master: Tarjetas de Órdenes Táctiles -->
+      <aside class="fym-orders-timeline">
+        <div class="timeline-header">
+          <h3>Cronograma de Entregas</h3>
+          <span class="timeline-hint">Orden cronológico</span>
         </div>
 
-        <div class="fym-orders-stack">
+        <div class="timeline-stream">
           @for (ord of sortedOrders(); track ord.id) {
-            <article class="fym-seller-order-card"
-                     [class.active]="selectedOrder()?.id === ord.id"
+            <article class="timeline-card"
+                     [class.selected]="selectedOrder()?.id === ord.id"
                      (click)="selectOrder(ord)">
-              <div class="fym-order-card-top">
-                <span class="fym-order-id">{{ ord.orderNumber }}</span>
-                <span class="fym-badge-pill" [ngClass]="ord.status >= 4 ? 'status-completed' : (ord.status >= 2 ? 'status-production' : 'status-pending')">
+              <div class="card-headline">
+                <span class="order-code">{{ ord.orderNumber }}</span>
+                <span class="fym-pill-status" [ngClass]="ord.status >= 4 ? 'status-done' : (ord.status >= 2 ? 'status-active' : 'status-review')">
                   {{ ord.statusText || 'En Negociación' }}
                 </span>
               </div>
 
-              <h4 class="fym-order-card-client">{{ ord.customerName }}</h4>
-              <p class="fym-order-card-detail">{{ ord.items?.[0]?.productName || 'Personalización' }}</p>
+              <h4 class="card-client">{{ ord.customerName }}</h4>
+              <p class="card-craft">{{ ord.items?.[0]?.productName || 'Personalización por Encargo' }}</p>
 
-              <div class="fym-order-card-meta">
-                <span class="fym-delivery-target">
-                  Entrega: {{ ord.estimatedDeliveryDate ? (ord.estimatedDeliveryDate | date:'mediumDate') : 'Por acordar' }}
+              <div class="card-footer">
+                <span class="card-date">
+                  Entrega: {{ ord.estimatedDeliveryDate ? (ord.estimatedDeliveryDate | date:'mediumDate') : 'Por convenir' }}
                 </span>
-                <strong class="fym-order-card-total">C$ {{ ord.totalAmount | number:'1.2-2' }}</strong>
+                <strong class="card-price">C$ {{ ord.totalAmount | number:'1.2-2' }}</strong>
               </div>
             </article>
           }
         </div>
       </aside>
 
-      <!-- Columna Detail: Panel Operativo, Negociación & Chat Desacoplado -->
+      <!-- Columna Detail: Ficha Operativa & Chat en Tiempo Real Desacoplado -->
       @if (selectedOrder(); as ord) {
         <app-order-detail-pane
           [order]="ord"

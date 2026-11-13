@@ -1,0 +1,189 @@
+.fym-seller-detail-pane {
+  display: flex;
+  flex-direction: column;
+}
+.fym-editorial-sheet {
+  background: #FFFFFF;
+  border: 1px solid rgba(217, 83, 111, 0.1);
+  border-radius: 20px;
+  padding: 28px 32px;
+  box-shadow: 0 12px 32px -4px rgba(217, 83, 111, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.fym-sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  border-bottom: 1px solid #FDF2F4;
+  padding-bottom: 18px;
+}
+.fym-tag-atelier {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #D9536F;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+.order-client-heading {
+  font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #2A171D;
+  letter-spacing: -0.02em;
+  margin: 0 0 6px;
+}
+.order-contact-meta {
+  font-size: 0.85rem;
+  color: #654E56;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  strong { color: #2A171D; }
+  .bullet-sep { color: #C6B3BA; }
+}
+.fym-sheet-deal-box {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.deal-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #957A84;
+}
+.deal-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #D9536F;
+  line-height: 1.1;
+  margin: 2px 0;
+}
+.deal-deposit {
+  font-size: 0.8rem;
+  color: #4D7058;
+  font-weight: 700;
+}
+.fym-pipeline-card {
+  background: #FFF8F9;
+  border: 1px solid rgba(217, 83, 111, 0.1);
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pipeline-heading {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #2A171D;
+}
+.pipeline-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  .btn-step {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    &:hover { transform: translateY(-1px); opacity: 0.9; }
+    &.quoted { background: #EEF2FF; color: #3730A3; }
+    &.confirmed { background: #FEF3C7; color: #92400E; }
+    &.in-production { background: #2A171D; color: #FFFFFF; }
+    &.ready { background: #EEF5F0; color: #2F4C37; }
+    &.delivered { background: #F3F4F6; color: #374151; }
+  }
+}
+.fym-deal-chat-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.deal-proposal-bar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  background: #FDF2F4;
+  border: 1px solid rgba(217, 83, 111, 0.15);
+  border-radius: 14px;
+  padding: 14px 20px;
+}
+.inputs-cluster {
+  display: flex;
+  gap: 14px;
+}
+.input-unit {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  label {
+    font-size: 0.74rem;
+    font-weight: 800;
+    color: #2A171D;
+    text-transform: uppercase;
+  }
+  input {
+    width: 110px;
+    padding: 8px 12px;
+    border: 1px solid rgba(217, 83, 111, 0.2);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: #FFFFFF;
+    &:focus { outline: none; border-color: #D9536F; }
+  }
+}
+.btn-send-deal {
+  padding: 10px 18px;
+  background: #D9536F;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(217, 83, 111, 0.25);
+  transition: all 0.2s;
+  &:hover { background: #B93753; transform: translateY(-1px); }
+}
+.chat-viewport-box {
+  border: 1px solid rgba(217, 83, 111, 0.12);
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 420px;
+  box-shadow: 0 4px 16px rgba(42, 23, 29, 0.03);
+}
+.fym-sheet-footer {
+  text-align: right;
+  padding-top: 6px;
+}
+.fym-link-invoice {
+  font-size: 0.85rem;
+  color: #D9536F;
+  font-weight: 700;
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+}
+@media (max-width: 900px) {
+  .deal-proposal-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .input-unit input { width: 100%; }
+}
